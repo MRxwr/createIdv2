@@ -1,5 +1,5 @@
 <style>
-        body {
+body {
 	width: 100wh;
 	height: 90vh;
 	color: #fff;
@@ -46,8 +46,7 @@
 	}
 }
 
-h1,
-h6 {
+h1,h6 {
 	font-family: 'Open Sans';
 	font-weight: 300;
 	text-align: center;
@@ -60,39 +59,39 @@ h6 {
 .shake {
 	animation: shake-animation 4.72s ease infinite;
 	transform-origin: 50% 50%;
-  }
-  .element {
-	margin: 0 auto;
-	width: 150px;
-	height: 150px;
-	background: red;
-  }
-  @keyframes shake-animation {
-	 0% { transform:translate(0,0) }
-	1.78571% { transform:translate(5px,0) }
-	3.57143% { transform:translate(0,0) }
-	5.35714% { transform:translate(5px,0) }
-	7.14286% { transform:translate(0,0) }
-	8.92857% { transform:translate(5px,0) }
-	10.71429% { transform:translate(0,0) }
-	100% { transform:translate(0,0) }
-  }
+}
+.element {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    background: red;
+}
+@keyframes shake-animation {
+        0% { transform:translate(0,0) }
+    1.78571% { transform:translate(5px,0) }
+    3.57143% { transform:translate(0,0) }
+    5.35714% { transform:translate(5px,0) }
+    7.14286% { transform:translate(0,0) }
+    8.92857% { transform:translate(5px,0) }
+    10.71429% { transform:translate(0,0) }
+    100% { transform:translate(0,0) }
+}
 
-  .backdrop {
-	  -moz-box-shadow: 0px 6px 5px #111; 
-	  -webkit-box-shadow: 0px 6px 5px #111; 
-	  box-shadow: 0px 2px 10px #111; 
-	  -moz-border-radius:190px; 
-	  -webkit-border-radius:190px; 
-	  border-radius:190px;
-  }
+.backdrop {
+    -moz-box-shadow: 0px 6px 5px #111; 
+    -webkit-box-shadow: 0px 6px 5px #111; 
+    box-shadow: 0px 2px 10px #111; 
+    -moz-border-radius:190px; 
+    -webkit-border-radius:190px; 
+    border-radius:190px;
+}
 
-  .linktree {
-	  width: 120px;
-	  height: 120px;
-	  background-image: url("https://i.imgur.com/oggcsIH.jpg");
-	  background-size: cover;
-	  background-repeat: no-repeat;
-	  background-position: 50% 50%;
-  }
+.linktree {
+    width: 120px;
+    height: 120px;
+    background-image: url("https://i.imgur.com/oggcsIH.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
   </style>
