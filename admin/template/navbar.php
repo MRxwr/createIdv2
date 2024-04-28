@@ -36,11 +36,10 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 							<i class="zmdi zmdi-notifications top-nav-icon"></i>
 							<?php 
-								require('includes/config.php');
 								$sql = "SELECT * 
-										FROM `orders2` 
+										FROM `logs` 
 										WHERE 
-										`status` LIKE '0' AND `status` LIKE '1' ORDER BY `date` DESC";
+										`username` LIKE '{$username}' ORDER BY `date` DESC";
 								$result = $dbconnect->query($sql);
 								$numberOfRows = $result->num_rows;
 							?>
@@ -63,12 +62,12 @@
 									{
 									?>
 									<div class="sl-item">
-										<a href="product-orders.php?info=view&id=<?php echo $row["orderId"] ?>">
+										<a href="product-orders.php?info=view&id=<?php echo $row["id"] ?>">
 											<div class="icon bg-blue">
 												<i class="zmdi zmdi-info"></i>
 											</div>
 											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger">Order Id:<?php echo $row["orderId"] ?>
+												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger">Order Id:<?php echo $row["id"] ?>
 												</span>
 												<span class="inline-block font-11  pull-right notifications-time"><?php echo $row["date"] ?></span>
 												<p class="truncate">Go to order</p>
