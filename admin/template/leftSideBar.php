@@ -20,9 +20,10 @@ if( $pages = selectDB("pages","`status` = '0' AND `section` = '0'") ){
 				$anchor = "href='{$pages[$i]["fileName"]}'";
 				$arrowDown = '';
 			}
+			$class = (strtolower($pages[$i]["enTitle"]) == strtolower($_GET["v"])) ? 'active' : '' ;
 			?>
 			<li>
-				<a <?php echo $anchor ?> >
+				<a <?php echo $anchor ?> class='<?php echo $class ?>'>
 					<div class="pull-left">
 						<i class="<?php echo $pages[$i]["icon"] ?> mr-20"></i>
 						<span class="right-nav-text"><?php echo direction($pages[$i]["enTitle"],$pages[$i]["arTitle"]) ?></span>
