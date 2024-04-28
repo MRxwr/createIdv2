@@ -1,6 +1,8 @@
 <?php
-manifestGenerate();
+
 if (isset($_POST["title"])) {
+	//manifestGenerate();
+	/*
 	// change websote color \\
 	$color = selectDB("settings", "`id` = '1'");
 	$css = file_get_contents("../css/custome.css");
@@ -15,16 +17,7 @@ if (isset($_POST["title"])) {
 	$bill = str_replace($color[0]["websiteColor"], $_POST["websiteColor"], $bill);
 	$bill = str_replace($color[0]["headerButton"], $_POST["headerButton"], $bill);
 	file_put_contents('../templates/bill.php', $bill);
-	
-	// update db \\
-	$sql = "UPDATE `s_media` 
-	SET
-	`theme` = '" . $_POST["theme"] . "'
-	WHERE
-	`id` LIKE '3'
-	";
-	$result = $dbconnect->query($sql);
-
+*/
 	$sql = "UPDATE `settings` 
 	SET 
 	`title` = '" . $_POST["title"] . "',
@@ -108,16 +101,6 @@ $pixil = urldecode($row["pixil"]);
 $whatsappNoti = json_decode($row["whatsappNoti"],true);
 //$paymentMethods = json_decode($row["paymentMethods"],true);
 
-$sql = "SELECT * FROM `s_media` WHERE `id` LIKE '3'";
-$result = $dbconnect->query($sql);
-$row = $result->fetch_assoc();
-$theme = $row["theme"];
-
-if ($currList = getCurr()) {
-foreach ($currList as $key => $value) {
-updateDB("currency", array("realValue" => (string)$value, "yourValue" => (string)$value), "`short` LIKE '%{$key}%'");
-}
-}
 ?>
 <div class="row heading-bg">
 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -785,7 +768,8 @@ updateDB("currency", array("realValue" => (string)$value, "yourValue" => (string
 			</div>
 		</div>
 	</div>
-
+<?php 
+/*
 	<!-- select theme -->
 	<div class="col-md-3">
 		<div class="panel panel-default card-view">
@@ -869,7 +853,8 @@ updateDB("currency", array("realValue" => (string)$value, "yourValue" => (string
 			</div>
 		</div>
 	</div>
-
+*/
+?>
 	<!-- show or hide logo -->
 	<div class="col-md-3">
 		<div class="panel panel-default card-view">
