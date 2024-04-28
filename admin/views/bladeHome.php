@@ -78,10 +78,10 @@ for ( $y =0; $y < 3; $y++){
 	$statTitle = [direction("Daily","يومية"),direction("Monthly","شهرية"),direction("All time Stats","أحصائيات الكل")];
 
 	$size = 0;
-	$sql = "SELECT SUM(f.price+JSON_UNQUOTE(JSON_EXTRACT(f.address,'$.shipping'))) as totalPrice FROM ( SELECT * FROM `orders2` WHERE `status` != '0' AND `status` != '5' {$statsDate[$y]} GROUP BY `orderId` ) as f;";
+	$sql = "SELECT * FROM `logs` WHERE `status` != '0' AND `status` != '5' {$statsDate[$y]} ";
 	$result = $dbconnect->query($sql);
 	$row = $result->fetch_assoc();
-	$size = $row["totalPrice"] == '' ?  numTo3Float(0) : numTo3Float($row["totalPrice"]);
+	$size = $row["hidden"] == '' ?  numTo3Float(0) : numTo3Float($row["hidden"]);
 	$title = $statTitle[$y];
 	$icon = "fa fa-money text-success";
 	?>
@@ -120,25 +120,25 @@ for ( $y =0; $y < 3; $y++){
 	$size = 0;
 	for( $i=0; $i < 4 ; $i++){
 		if ( $i == 0 ){
-			if ($call = selectDB("orders2","`status` = '1' {$statsDate[$y]}")){
+			if ($call = selectDB("logs","`status` = '1' {$statsDate[$y]}")){
 				$size = sizeof($call);
 			}
 			$title = direction("Success","ناجحه");
 			$icon = "fa fa-money text-primary";
 		}elseif( $i == 1 ){
-			if ($call = selectDB("orders2","`status` = '2' {$statsDate[$y]}")){
+			if ($call = selectDB("logs","`status` = '2' {$statsDate[$y]}")){
 				$size = sizeof($call);
 			}
 			$title = direction("Preparing","قيد التجهيز");
 			$icon = "pe-7s-clock text-default";
 		}elseif( $i == 2 ){
-			if ($call = selectDB("orders2","`status` = '3' {$statsDate[$y]}")){
+			if ($call = selectDB("logs","`status` = '3' {$statsDate[$y]}")){
 				$size = sizeof($call);
 			}
 			$title = direction("Delivering","جاري التوصيل");
 			$icon = "fa fa-car text-warning";
 		}elseif( $i == 3 ){
-			if ($call = selectDB("orders2","`status` = '4' {$statsDate[$y]}")){
+			if ($call = selectDB("logs","`status` = '4' {$statsDate[$y]}")){
 				$size = sizeof($call);
 			}
 			$title = direction("Delivered","تم تسليمها");
@@ -190,56 +190,17 @@ for ( $y =0; $y < 3; $y++){
         </thead>
         <tbody>
         <?php
-        if($ordersOnline = selectDB("orders2","`status` != 0 OR (`status` = '0' AND `paymentMethod` = '3') GROUP BY `orderId` ORDER BY `date` DESC LIMIT 5")){
+        if($ordersOnline = selectDB("logs","`status` != 0 ORDER BY `date` DESC LIMIT 5")){
         for ( $i = 0 ; $i < sizeof($ordersOnline) ; $i++){
         ?>
         <tr>
         <td><?php echo timeZoneConverter($ordersOnline[$i]["date"]); ?></td>
-        <td><?php echo $ordersOnline[$i]["orderId"] ?></td>
-        <td><?php echo numTo3Float($ordersOnline[$i]["price"]) . "KD" ?></td>
-        <td><a href="product-orders?info=view&orderId=<?php echo $ordersOnline[$i]["orderId"] ?>">Details</a></td>
+        <td><?php echo $ordersOnline[$i]["id"] ?></td>
+        <td><?php echo numTo3Float($ordersOnline[$i]["username"]) ?></td>
+        <td><a href="product-orders?info=view&orderId=<?php echo $ordersOnline[$i]["id"] ?>">Details</a></td>
         </tr>
         <?php }
         }
-        ?>
-        </tbody>
-        </table>
-        </div>
-        </div>	
-        </div>	
-        </div>
-        </div>
-    </div>
-    
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="panel panel-default card-view">
-        <div class="panel-wrapper collapse in">
-        <div class="panel-body row">
-        <div class="table-wrap">
-        <div class="table-responsive">
-        <table id="myTable" class="table table-hover display  pb-30" >
-        <label class="tabHead"><?php echo direction("POS Orders","طلبات المحلات") ?></label>
-        <thead>
-        <tr>
-        <th><?php echo $DateTime ?></th>
-        <th><?php echo $OrderID ?></th>
-        <th><?php echo $Price ?></th>
-        <th><?php echo $Actions ?></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        if($posOrders = selectDB("posorders","`status` != '1000' GROUP BY `orderId` ORDER BY `orderId` DESC LIMIT 5")){
-        for ( $i = 0 ; $i < sizeof($posOrders) ; $i++){
-        ?>
-        <tr>
-        <td><?php echo timeZoneConverter($posOrders[$i]["date"]); ?></td>
-        <td><?php echo $posOrders[$i]["orderId"] ?></td>
-        <td><?php echo numTo3Float($posOrders[$i]["totalPrice"]) . " KWD" ?></td>
-        <td><a href="product-posOrders?info=view&id=<?php echo $posOrders[$i]["orderId"] ?>">Details</a></td>
-        </tr>
-        <?php }
-        } 
         ?>
         </tbody>
         </table>
