@@ -95,7 +95,7 @@ if( isset($_POST["fullName"]) ){
 			</div>
 
 			<div class="col-md-4">
-			<label><?php echo direction("URL","الرابط") ?>https://createid.link/example</label>
+			<label><?php echo direction("URL","الرابط") ?> -> https://createid.link/example</label>
 			<input type="text" name="url" class="form-control" placeholder="example" required>
 			</div>
 			
