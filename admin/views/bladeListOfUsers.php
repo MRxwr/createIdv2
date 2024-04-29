@@ -19,6 +19,7 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 
 if( isset($_POST["fullName"]) ){
 	$id = $_POST["update"];
+	$_POST["url"] = strtolower($_POST["url"]);
 	unset($_POST["update"]);
 	if ( $id == 0 ){
 		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
