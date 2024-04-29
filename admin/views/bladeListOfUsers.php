@@ -75,6 +75,12 @@ if( isset($_POST["fullName"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
+		<div class="panel-heading">
+		<div class="pull-left">
+			<h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6>
+		</div>
+			<div class="clearfix"></div>
+		</div>
 			<div class="col-md-3">
 			<label><?php echo direction("Name","الإسم") ?></label>
 			<input type="text" name="fullName" class="form-control" required>
