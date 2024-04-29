@@ -93,5 +93,5 @@ h1,h6 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-}
+} 
   </style>
