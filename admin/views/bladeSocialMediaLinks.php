@@ -1,19 +1,19 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 	if( updateDB('socialMedia',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
-		header("LOCATION: ?v=socialMediaLinks");
+		header("LOCATION: ?v=SocialMediaLinks");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
 	if( updateDB('socialMedia',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
-		header("LOCATION: ?v=socialMediaLinks");
+		header("LOCATION: ?v=SocialMediaLinks");
 	}
 }
 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	if( updateDB('socialMedia',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
-		header("LOCATION: ?v=socialMediaLinks");
+		header("LOCATION: ?v=SocialMediaLinks");
 	}
 }
 
@@ -21,7 +21,7 @@ if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
 		updateDB("socialMedia",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
-	header("LOCATION: ?v=socialMediaLinks");
+	header("LOCATION: ?v=SocialMediaLinks");
 }
 
 if( isset($_POST["title"]) ){
@@ -29,7 +29,7 @@ if( isset($_POST["title"]) ){
 	unset($_POST["update"]);
 	if ( $id == 0 ){
 		if( insertDB("socialMedia", $_POST) ){
-			header("LOCATION: ?v=socialMediaLinks");
+			header("LOCATION: ?v=SocialMediaLinks");
 		}else{
 		?>
 		<script>
@@ -39,7 +39,7 @@ if( isset($_POST["title"]) ){
 		}
 	}else{
 		if( updateDB("socialMedia", $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=socialMediaLinks");
+			header("LOCATION: ?v=SocialMediaLinks");
 		}else{
 		?>
 		<script>
@@ -55,7 +55,7 @@ if( isset($_POST["title"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Banner Details","تفاصيل البنر") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("Link Details","تفاصيل الرابط") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
