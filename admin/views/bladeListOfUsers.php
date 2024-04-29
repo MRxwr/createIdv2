@@ -63,24 +63,39 @@ if( isset($_POST["fullName"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Name","الإسم") ?></label>
 			<input type="text" name="fullName" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Email","البريد الإلكتروني") ?></label>
 			<input type="text" name="email" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Password","كلمة المرور") ?></label>
 			<input type="text" name="password" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Mobile","الهاتف") ?></label>
 			<input type="number" min="0" maxlength="8" name="phone" class="form-control" required>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("URL","الرابط") ?>https://createid.link/example</label>
+			<input type="text" name="url" class="form-control" placeholder="example" required>
+			</div>
+			
+			<div class="col-md-4">
+			<label><?php echo direction("subTitle","العنوان الفرعي") ?></label>
+			<input type="text" name="details" class="form-control" required>
+			</div>
+			
+			<div class="col-md-4">
+			<label><?php echo direction("Logo","الشعار") ?></label>
+			<input type="file" name="logo" class="form-control">
 			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
@@ -134,9 +149,12 @@ if( isset($_POST["fullName"]) ){
 				
 				?>
 				<tr>
+				<td><img src="../logos/<?php echo $users[$i]["logo"] ?>" style="height:100px;width:100px;"></td>
 				<td id="name<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["fullName"] ?></td>
 				<td id="email<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["email"] ?></td>
 				<td id="mobile<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["phone"] ?></td>
+				<td id="url<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["url"] ?></td>
+				<td id="details<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["details"] ?></td>
 				<td class="text-nowrap">
 				
 				<a href="?v=UserInfo&id=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"> <i class="fa fa-plus text-inverse m-r-10"></i>
@@ -149,8 +167,7 @@ if( isset($_POST["fullName"]) ){
 				<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
 				</a>
 				<div style="display:none">
-					<label id="type<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["empType"] ?></label>
-					<label id="shop<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["shopId"] ?></label>
+					<label id="logo<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
 				</div>				
 				</td>
 				</tr>
@@ -171,14 +188,14 @@ if( isset($_POST["fullName"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
-		var email = $("#email"+id).html();
-		var name = $("#name"+id).html();
-		var mobile = $("#mobile"+id).html();
-		$("input[name=password]").prop("required",false);
-		$("input[name=email]").val(email);
-		$("input[name=phone]").val(mobile);
 		$("input[name=update]").val(id);
-		$("input[name=fullName]").val(name);
 		$("input[name=fullName]").focus();
+		$("input[name=email]").val($("#email"+id).html());
+		$("input[name=phone]").val($("#mobile"+id).html());
+		$("input[name=fullName]").val($("#name"+id).html());
+		$("input[name=url]").val($("#url"+id).html());
+		$("input[name=details]").val($("#details"+id).html());
+		$("input[name=password]").prop("required",false);
+		$("input[name=logo]").prop("required",false);
 	})
 </script>
