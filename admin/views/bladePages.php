@@ -17,6 +17,13 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
+if( isset($_POST["updateRank"]) ){
+	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
+		updateDB("pages",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+	}
+	header("LOCATION: ?v=SocialMediaLinks");
+}
+
 if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
@@ -157,8 +164,13 @@ if( isset($_POST["enTitle"]) ){
             }
 		?>
 		<tr>
-		<td><input name="rank[]" class="form-control" type="number" value="<?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?>"></td>
-		<td id="section<?php echo $pages[$i]["id"]?>" ><?php echo direction($section[0]["enTitle"],$section[0]["arTitle"]) ?><label id="sectionHidden<?php echo $pages[$i]["id"]?>" style="display:none"><?php echo $pages[$i]["section"]?></label></td>
+		<td>
+			<input name="rank[]" class="form-control" type="number" value="<?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?>">
+			<input name="id[]" class="form-control" type="hidden" value="<?php echo $banners[$i]["id"] ?>">
+		</td>
+		<td id="section<?php echo $pages[$i]["id"]?>" >
+			<?php echo direction($section[0]["enTitle"],$section[0]["arTitle"]) ?><label id="sectionHidden<?php echo $pages[$i]["id"]?>" style="display:none"><?php echo $pages[$i]["section"]?></label>
+		</td>
 		<td id="enTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["enTitle"] ?></td>
 		<td id="arTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["arTitle"] ?></td>
 		<td id="icon<?php echo $pages[$i]["id"]?>" ><label class="<?php echo $pages[$i]["icon"] ?>"></label><label id="iconHidden<?php echo $pages[$i]["id"]?>" style="display:none"><?php echo $pages[$i]["icon"] ?></label></td>
