@@ -143,7 +143,7 @@ if( isset($_POST["title"]) ){
 		?>
 		<tr>
 		<td>
-		<input name="rank[]" class="form-control" type="number" value="<?php echo $counter ?>">
+		<input name="rank[]" class="form-control" type="number" value="<?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?>">
 		<input name="id[]" class="form-control" type="hidden" value="<?php echo $banners[$i]["id"] ?>">
 		</td>
 		<td id="title<?php echo $banners[$i]["id"]?>" ><?php echo $banners[$i]["title"] ?></td>
