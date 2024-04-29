@@ -134,6 +134,7 @@ if( isset($_POST["enTitle"]) ){
 		<?php 
 		if( $pages = selectDB("pages","`status` = '0' ORDER BY `section` ASC") ){
 		for( $i = 0; $i < sizeof($pages); $i++ ){
+			$counter = $i + 1;
             if ($section = selectDB("pages","`id` = '{$pages[$i]["section"]}'") ){
             }else{
                 $section[0]["enTitle"] = "Main";
@@ -150,6 +151,7 @@ if( isset($_POST["enTitle"]) ){
             }
 		?>
 		<tr>
+		<input name="rank[]" class="form-control" type="number" value="<?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?>">
 		<td id="section<?php echo $pages[$i]["id"]?>" ><?php echo direction($section[0]["enTitle"],$section[0]["arTitle"]) ?><label id="sectionHidden<?php echo $pages[$i]["id"]?>" style="display:none"><?php echo $pages[$i]["section"]?></label></td>
 		<td id="enTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["enTitle"] ?></td>
 		<td id="arTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["arTitle"] ?></td>
