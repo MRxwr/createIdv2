@@ -78,12 +78,13 @@ h1,h6 {
 }
 
 .backdrop {
-    -moz-box-shadow: 0px 6px 5px #111; 
-    -webkit-box-shadow: 0px 6px 5px #111; 
-    box-shadow: 0px 2px 10px #111; 
-    -moz-border-radius:190px; 
-    -webkit-border-radius:190px; 
-    border-radius:190px;
+    -moz-box-shadow: 0px 6px 5px #3b3b3b; 
+    -webkit-box-shadow: 0px 6px 5px #3b3b3b; 
+    box-shadow: 0px 0px 10px #3b3b3b; 
+    -moz-border-radius:20px; 
+    -webkit-border-radius:20px; 
+    border-radius:20px;
+	border: 1px solid white;
 }
 
 .linktree {
