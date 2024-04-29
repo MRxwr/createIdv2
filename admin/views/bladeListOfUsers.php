@@ -21,6 +21,11 @@ if( isset($_POST["fullName"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
+		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+            $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+		}else{
+            $_POST["logo"] = "";
+        }
 		$_POST["password"] = sha1($_POST["password"]);
 		if( insertDB("users", $_POST) ){
 			header("LOCATION: ?v=ListOfUsers");
@@ -32,6 +37,12 @@ if( isset($_POST["fullName"]) ){
 		<?php
 		}
 	}else{
+		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+            $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+		}else{
+            $imageurl = selectDB("users", "`id` = '{$id}'");
+            $_POST["logo"] = $imageurl[0]["logo"];
+        }
 		if( !empty($_POST["password"]) ){
 			$_POST["password"] = sha1($_POST["password"]);
 		}else{
