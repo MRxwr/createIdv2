@@ -136,9 +136,12 @@ if( isset($_POST["fullName"]) ){
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+		<th><?php echo direction("Logo","الشعار") ?></th>
 		<th><?php echo direction("Name","الإسم") ?></th>
-		<th><?php echo direction("Email","الإيميل") ?></th>
 		<th><?php echo direction("Mobile","الهاتف") ?></th>
+		<th><?php echo direction("Email","الإيميل") ?></th>
+		<th><?php echo direction("URL","الرابط") ?></th>
+		<th><?php echo direction("Subtitle","العنوان الفرعي") ?></th>
 		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
 		</tr>
 		</thead>
@@ -162,8 +165,8 @@ if( isset($_POST["fullName"]) ){
 				<tr>
 				<td><img src="../logos/<?php echo $users[$i]["logo"] ?>" style="height:100px;width:100px;"></td>
 				<td id="name<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["fullName"] ?></td>
-				<td id="email<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["email"] ?></td>
 				<td id="mobile<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["phone"] ?></td>
+				<td id="email<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["email"] ?></td>
 				<td id="url<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["url"] ?></td>
 				<td id="details<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["details"] ?></td>
 				<td class="text-nowrap">
