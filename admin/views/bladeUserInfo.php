@@ -1,7 +1,8 @@
 <?php 
-if( $user = selectDB("users","`id` = '{$_GET["id"]}'")){
-	if( $settings = selectDB("settings","`id` = '1'") ){
-		$defaultCurr = $settings[0]["currency"];
+if( isset($_GET["id"]) && !empty($_GET["id"]) ){
+	if($user = selectDB("users","`id` = '{$_GET["id"]}'")){
+	}else{
+		header("LOCATION: ?v=ListOfusers");die();
 	}
 }else{
 	header("LOCATION: ?v=ListOfusers");die();
