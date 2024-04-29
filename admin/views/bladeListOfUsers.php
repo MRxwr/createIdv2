@@ -62,6 +62,13 @@ if( isset($_POST["fullName"]) ){
 	} 
 }
 ?>
+<style>
+	.secionHeader{
+		margin: 15px;
+		padding: 10px;
+		background-color: #f2f2f2;
+	}
+</style>
 <div class="row">		
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
@@ -75,7 +82,7 @@ if( isset($_POST["fullName"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-12 bg-warning"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
+			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
 			<div class="col-md-3">
 			<label><?php echo direction("Name","الإسم") ?></label>
 			<input type="text" name="fullName" class="form-control" required>
@@ -96,8 +103,8 @@ if( isset($_POST["fullName"]) ){
 			<input type="number" min="0" maxlength="8" name="phone" class="form-control" required>
 			</div>
 
-			<div class="col-md-12 bg-warning"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
-			
+			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
+
 			<div class="col-md-4">
 			<label><?php echo direction("URL","الرابط") ?> -> https://createid.link/example</label>
 			<input type="text" name="url" class="form-control" placeholder="example" required>
