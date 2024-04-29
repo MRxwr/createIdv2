@@ -67,7 +67,7 @@ if( isset($_POST["fullName"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Profile Details","تفاصيل الملف الشخصي") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -75,9 +75,7 @@ if( isset($_POST["fullName"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="pull-left">
-				<h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6>
-			</div>
+			<div class="col-md-12 bg-warning"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
 			<div class="col-md-3">
 			<label><?php echo direction("Name","الإسم") ?></label>
 			<input type="text" name="fullName" class="form-control" required>
@@ -98,9 +96,7 @@ if( isset($_POST["fullName"]) ){
 			<input type="number" min="0" maxlength="8" name="phone" class="form-control" required>
 			</div>
 
-			<div class="pull-left">
-				<h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6>
-			</div>
+			<div class="col-md-12 bg-warning"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
 			
 			<div class="col-md-4">
 			<label><?php echo direction("URL","الرابط") ?> -> https://createid.link/example</label>
