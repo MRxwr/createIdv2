@@ -145,7 +145,7 @@ if( isset($_POST["enTitle"]) ){
 		
 		<tbody>
 		<?php 
-		if( $pages = selectDB("pages","`status` = '0' ORDER BY `section` ASC") ){
+		if( $pages = selectDB("pages","`status` = '0' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($pages); $i++ ){
 			$counter = $i + 1;
             if ($section = selectDB("pages","`id` = '{$pages[$i]["section"]}'") ){
