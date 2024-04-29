@@ -47,7 +47,7 @@ if( isset($_POST["fullName"]) ){
 		</script>
 		<?php
 		}
-	}
+	} 
 }
 ?>
 <div class="row">		
