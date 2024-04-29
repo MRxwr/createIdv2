@@ -184,7 +184,7 @@ if( isset($_POST["title"]) ){
 		var title = $("#title"+id).html();
 		var iconeText = $("#iconText"+id).html();
 		$("input[name=link]").val(link);
-		$("input[name=title]").val(title);
+		$("input[name=title]").val(title).focus();
 		$("input[name=icon]").val(iconeText);
 	})
 </script>
