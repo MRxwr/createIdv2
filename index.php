@@ -34,9 +34,9 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
         <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
                 <div class="row">
-                    <div class="col-xs-6"><img class="backdrop linktree"></div>
-                    <div class="col-xs-6"><h2 style="color: #ffffff; padding-top: 20px;"><?php echo $account["fullName"] ?></h2></div>
-                    <div class="col-xs-12"><h4 style="color: #ffffff; padding-top: 20px;"><?php echo $account["details"] ?></h4></div>
+                    <div class="col-sm-6"><img class="backdrop linktree"></div>
+                    <div class="col-sm-6"><h2 style="color: #ffffff; padding-top: 20px;"><?php echo $account["fullName"] ?></h2></div>
+                    <div class="col-sm-12"><h4 style="color: #ffffff; padding-top: 20px;"><?php echo $account["details"] ?></h4></div>
                 </div>
             </div>
         </div>
