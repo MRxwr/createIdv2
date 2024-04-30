@@ -52,7 +52,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
-                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='btn btn-outline-light {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span>
+                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='{$profiles[$i]["btnColor"]} {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span>
                     </button>
                 </div>";
                 }
