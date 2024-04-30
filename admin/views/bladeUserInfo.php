@@ -132,7 +132,6 @@ if( isset($_POST["account"]) ){
 		<thead>
 		<tr>
 		<th>#</th>
-		<th><?php echo direction("Rank","الترتيب") ?></th>
 		<th><?php echo direction("Platform","المنصة") ?></th>
 		<th><?php echo direction("Account","الحساب") ?></th>
 		<th><?php echo direction("Moving","متحرك") ?></th>
