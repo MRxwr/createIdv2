@@ -48,8 +48,6 @@ if( isset($_POST["account"]) ){
 		<?php
 		}
 	}
-}else{
-	header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 }
 ?>
 <div class="row">			
