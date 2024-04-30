@@ -4,6 +4,7 @@ require_once("admin/includes/functions.php");
 if( !isset($_GET["account"]) || empty($_GET["account"]) ){
     header("LOCATION: default.php");die();
 }elseif( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){
+    $account = $account[0];
     if( $profiles = selectDB("profiles","`userId` = '{$account[0]["id"]}'")){
     }else{
         $profiles = [];
@@ -63,7 +64,7 @@ if( !isset($_GET["account"]) || empty($_GET["account"]) ){
     </div>
 
         <div class="text-center">
-            <a href="https://www.createkuwait.com/" style="color: #34312f;" target="_blank">made with (k) Create co.</a>
+            <a href="https://www.createkuwait.com/" style="color: #34312f;" target="_blank">Made with (k) Create co.</a>
         </div>
 
 
