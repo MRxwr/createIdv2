@@ -1,9 +1,16 @@
+<?php
+$mainColors = ["#EE7752", "#E73C7E", "#23A6D5", "#23D5AB"];
+$accountColors = [$account["fourColors1"],$account["fourColors2"],$account["fourColors3"],$account["fourColors4"]];
+for( $i = 0; $i < sizeof($accountColors); $i++ ){
+	$accountColors[$i] = ( isset($accountColors[$i]) && !empty($accountColors[$i]) ) ? $accountColors[$i] : $mainColors[$i] ;
+}
+?>
 <style>
 body {
 	width: 100wh;
 	height: 90vh;
 	color: #fff;
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background: linear-gradient(-45deg,<?php echo "$accountColors[0],$accountColors[1],$accountColors[2],$accountColors[3]" ?>);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
@@ -90,7 +97,7 @@ h1,h6 {
 .linktree {
     width: 120px;
     height: 120px;
-    background-image: url("https://i.imgur.com/oggcsIH.jpeg");
+    background-image: url("<?php echo "logos/{$account["logo"]}" ?>");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
