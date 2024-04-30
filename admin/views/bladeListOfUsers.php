@@ -133,7 +133,7 @@ if( isset($_POST["fullName"]) ){
 
 			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("Theme","الشكل") ?></h6></div>
 
-			<div class="col-md-4">
+			<div class="col-md-12">
 			<label><?php echo direction("Background type","نوع الخلفية") ?></label>
 			<select name="bgType" class="form-control" required>
 				<?php 
