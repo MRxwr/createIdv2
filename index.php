@@ -49,7 +49,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
                     if (isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"])) {
-                        $url = $profiles[$i]["link"];
+                        $url = str_replace(" ","",$profiles[$i]["link"]);
                         echo "Original URL: $url\n"; // Debug output
                         if (filter_var($url, FILTER_VALIDATE_URL)) {
                             echo "Valid URL!\n"; // Debug output
