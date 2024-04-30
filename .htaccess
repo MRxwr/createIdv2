@@ -3,9 +3,5 @@ RewriteEngine On
 # Redirect to default page when there is nothing after the domain
 RewriteRule ^$ /default.php [L]
 
-# Rewrite URLs without .php extension to corresponding PHP files
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/]+)/?$ /$1.php [L]
-
 # Rewrite any other requests with a parameter
 RewriteRule ^([^/]+)/?$ /index.php?account=$1 [L,QSA]
