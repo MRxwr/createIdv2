@@ -5,7 +5,7 @@ if( !isset($_GET["account"]) || empty($_GET["account"]) ){
     header("LOCATION: default.php");die();
 }elseif( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){
     $account = $account[0];
-    if( $profiles = selectDB("profiles","`userId` = '{$account[0]["id"]}'")){
+    if( $profiles = selectDB("profiles","`userId` = '{$account[0]["id"]}' ORDER BY `rank` ASC")){
     }else{
         $profiles = [];
     }
@@ -40,26 +40,20 @@ if( !isset($_GET["account"]) || empty($_GET["account"]) ){
 
     <div class="container">
     <div class="col-xs-12">
-            <div class="text-center">
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='http://bit.ly/2IZURI7'" type="button" class="btn btn-outline-light shake" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 800;">15% OFF Instagram Growth</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='http://bit.ly/2SVZXES'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Guide: Increasing Your Engagement</button>
-                </div>
-                <div style="padding-bottom: 30px; display: flex; justify-content: center;">
-                    <button onclick="location.href='#'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="height:35px; width:35px; fill:red"><path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"/></svg>
-                        <span style="flex: 1; text-align: center;">View My YouTube Channel</span>
+        <div class="text-center">
+            <?php
+            if( count($profiles) > 0 ){
+                for( $i = 0; $i < sizeof($profiles); $i++ ){
+                    $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
+                    $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
+                    $link = "location.href='{$socialMedia[0]["link"]}'{$profiles[$i]["account"]}";
+                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick='{$link}' type='button' class='btn btn-outline-light {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$svg}<span style='flex: 1; text-align: center;'>{$profiles[$i]["account"]}</span>
                     </button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='#'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Connect On LinkedIn</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='#'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">My Personal Website</button>
-                </div>
-            </div>
+                </div>";
+                }
+            }
+            ?>
+        </div>
     </div>
     </div>
 
