@@ -246,9 +246,9 @@ if( isset($_POST["fullName"]) ){
 					<label id="logo<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
 					<label id="bgImage<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgImage"] ?></label>
 					<label id="singleColor<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["singleColor"] ?></label>
-					<label id="threeColor1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor1"] ?></label>
-					<label id="threeColor2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor2"] ?></label>
-					<label id="threeColor3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor3"] ?></label>
+					<label id="threeColors1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors1"] ?></label>
+					<label id="threeColors2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors2"] ?></label>
+					<label id="threeColors3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors3"] ?></label>
 				</div>				
 				</td>
 				</tr>
@@ -277,9 +277,9 @@ if( isset($_POST["fullName"]) ){
 		$("input[name=url]").val($("#url"+id).html());
 		$("input[name=details]").val($("#details"+id).html());
 		$("input[name=singleColor]").val($("#singleColor"+id).html());
-		$("input[name=threeColor1]").val($("#threeColor1"+id).html());
-		$("input[name=threeColor2]").val($("#threeColor2"+id).html());
-		$("input[name=threeColor3]").val($("#threeColor3"+id).html());
+		$("input[name=threeColors1]").val($("#threeColors1"+id).html());
+		$("input[name=threeColors2]").val($("#threeColors2"+id).html());
+		$("input[name=threeColors3]").val($("#threeColors3"+id).html());
 		$("input[name=password]").prop("required",false);
 		$("input[name=logo]").prop("required",false);
 		$("input[name=bgImage]").prop("required",false);
