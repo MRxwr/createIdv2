@@ -210,7 +210,7 @@ if( isset($_POST["fullName"]) ){
 		
 		<tbody>
 		<?php 
-		if( $users = selectDB("users","`status` = '0' AND `hidden` != '1'") ){
+		if( $users = selectDB("users","`status` = '0' AND `hidden` = '1'") ){
 			for( $i = 0; $i < sizeof($users); $i++ ){
 				$counter = $i + 1;
 				if ( $users[$i]["hidden"] == 2 ){
