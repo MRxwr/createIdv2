@@ -102,6 +102,7 @@ if( isset($_POST["account"]) ){
 			<label><?php echo direction("Button Color","لون الزر") ?></label>
 			<select name="btnColor" class="form-control">
 				<option value="btn btn-outline-primary"><label class='txt-primary'>Blue</label></option>
+				<option value="btn btn-outline-danger"><label class='txt-danger'>Blue</label></option>
 			</select>
 			</div>
 
