@@ -1,6 +1,4 @@
-RewriteEngine On
-
-# Redirect to default page when there is nothing after the domain
+# Redirect to default.php when there is nothing after the domain
 RewriteRule ^$ /default.php [L]
 
 # Rewrite any other requests with a parameter
