@@ -90,7 +90,7 @@ if( isset($_POST["account"]) ){
 
 			<div class="col-md-4">
 			<label><?php echo direction("Text","النص") ?></label>
-			<input type="text" name="text" class="form-control" required>
+			<input type="text" name="text" class="form-control">
 			</div>
 
 			<div class="col-md-4">
