@@ -12,14 +12,13 @@ body {
 	color: #fff;
 	<?php
 	if( $account["bgType"] == 1 ){
-		echo "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});";
+		echo "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});background-size: 400% 400%;";
 	}elseif($account["bgType"] == 2 ){
-		echo "background-color:{$account["singleColor"]};";
+		echo "background-color:{$account["singleColor"]};background-size: 400% 400%;";
 	}else{
 		echo "background-size: {$account["bgSize"]};background-repeat: {$account["bgRepeat"]};background-image: url(logos/{$account["bgImage"]});";
 	}
 	?>
-	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
 	animation: Gradient 15s ease infinite;
