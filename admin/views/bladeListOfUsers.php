@@ -27,6 +27,11 @@ if( isset($_POST["fullName"]) ){
 		}else{
             $_POST["logo"] = "";
         }
+		if (is_uploaded_file($_FILES['bgImage']['tmp_name'])) {
+            $_POST["bgImage"] = uploadImageBanner($_FILES['bgImage']['tmp_name']);
+		}else{
+            $_POST["bgImage"] = "";
+        }
 		$_POST["password"] = sha1($_POST["password"]);
 		if( insertDB("users", $_POST) ){
 			header("LOCATION: ?v=ListOfUsers");
@@ -43,6 +48,12 @@ if( isset($_POST["fullName"]) ){
 		}else{
             $imageurl = selectDB("users", "`id` = '{$id}'");
             $_POST["logo"] = $imageurl[0]["logo"];
+        }
+		if (is_uploaded_file($_FILES['bgImage']['tmp_name'])) {
+            $_POST["bgImage"] = uploadImageBanner($_FILES['bgImage']['tmp_name']);
+		}else{
+            $imageurl = selectDB("users", "`id` = '{$id}'");
+            $_POST["bgImage"] = $imageurl[0]["bgImage"];
         }
 		if( !empty($_POST["password"]) ){
 			$_POST["password"] = sha1($_POST["password"]);
@@ -82,7 +93,7 @@ if( isset($_POST["fullName"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
+			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("User Credintials","بيانات العضو") ?></h6></div>
 			<div class="col-md-3">
 			<label><?php echo direction("Name","الإسم") ?></label>
 			<input type="text" name="fullName" class="form-control" required>
@@ -103,7 +114,7 @@ if( isset($_POST["fullName"]) ){
 			<input type="number" min="0" maxlength="8" name="phone" class="form-control" required>
 			</div>
 
-			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("User Details","تفاصيل العضو") ?></h6></div>
+			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("Profile Page","الصفحة الأساسية") ?></h6></div>
 
 			<div class="col-md-4">
 			<label><?php echo direction("URL","الرابط") ?> -> https://createid.link/example</label>
@@ -111,13 +122,53 @@ if( isset($_POST["fullName"]) ){
 			</div>
 			
 			<div class="col-md-4">
-			<label><?php echo direction("subTitle","العنوان الفرعي") ?></label>
+			<label><?php echo direction("Subtitle","العنوان الفرعي") ?></label>
 			<input type="text" name="details" class="form-control" required>
 			</div>
 			
 			<div class="col-md-4">
 			<label><?php echo direction("Logo","الشعار") ?></label>
 			<input type="file" name="logo" class="form-control">
+			</div>
+
+			<div class="col-md-12 secionHeader text-center"><h6 class="panel-title txt-dark"><?php echo direction("Theme","الشكل") ?></h6></div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Background type","نوع الخلفية") ?></label>
+			<select name="bgType" class="form-control" required>
+				<?php 
+				$bgTypesValue = [1,2,3];
+				$bgTypes = [direction("Three Colors Moving","ثلاث ألوان متحركه"),direction("Single Color","لون واحد"),direction("Image","صورة")];
+				for( $i = 0; $i < sizeof($bgTypesValue); $i++){
+					echo "<option value='{$bgTypesValue[$i]}'>{$bgTypes[$i]}</option>";
+				}
+				?>
+			</select>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Color 1","اللون الأول") ?></label>
+			<input type="color" name="threeColors1" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Color 2","اللون الثاني") ?></label>
+			<input type="color" name="threeColors2" class="form-control">
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Color 3","اللون الثالث") ?></label>
+			<input type="color" name="threeColors3" class="form-control">
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Single Color","لون واحد") ?></label>
+			<input type="text" name="singleColor" class="form-control">
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Background","الخلفية") ?></label>
+			<input type="file" name="bgImage" class="form-control">
 			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
@@ -193,6 +244,11 @@ if( isset($_POST["fullName"]) ){
 				</a>
 				<div style="display:none">
 					<label id="logo<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
+					<label id="bgImage<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgImage"] ?></label>
+					<label id="singleColor<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["singleColor"] ?></label>
+					<label id="threeColor1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor1"] ?></label>
+					<label id="threeColor2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor2"] ?></label>
+					<label id="threeColor3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColor3"] ?></label>
 				</div>				
 				</td>
 				</tr>
@@ -220,7 +276,12 @@ if( isset($_POST["fullName"]) ){
 		$("input[name=fullName]").val($("#name"+id).html());
 		$("input[name=url]").val($("#url"+id).html());
 		$("input[name=details]").val($("#details"+id).html());
+		$("input[name=singleColor]").val($("#singleColor"+id).html());
+		$("input[name=threeColor1]").val($("#threeColor1"+id).html());
+		$("input[name=threeColor2]").val($("#threeColor2"+id).html());
+		$("input[name=threeColor3]").val($("#threeColor3"+id).html());
 		$("input[name=password]").prop("required",false);
 		$("input[name=logo]").prop("required",false);
+		$("input[name=bgImage]").prop("required",false);
 	})
 </script>
