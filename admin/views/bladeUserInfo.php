@@ -153,7 +153,7 @@ if( isset($_POST["account"]) ){
 			$link = "?v={$_GET["v"]}&hide={$profiles[$i]["id"]}";
 			$hide = direction("Hide","إخفاء");
 		}
-		$isMoving = ( $profiles[$i]["id"] == 1 ) ? direction("Yes","نعم"): direction("No","لا");
+		$isMoving = ( $profiles[$i]["isMoving"] == 1 ) ? direction("Yes","نعم"): direction("No","لا");
 		if( $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'") ){
 			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? "{$socialMedia[0]["icon"]} - {$socialMedia[0]["title"]}" : "" ;
 		}else{
