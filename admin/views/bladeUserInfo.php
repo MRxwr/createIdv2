@@ -101,8 +101,22 @@ if( isset($_POST["account"]) ){
 			<div class="col-md-3">
 			<label><?php echo direction("Button Color","لون الزر") ?></label>
 			<select name="btnColor" class="form-control">
-				<option value="btn btn-outline-primary"><label class='txt-primary'>Blue</label></option>
-				<option value="btn btn-outline-danger"><label class='txt-danger'>Blue</label></option>
+				<option value="btn btn-outline-light" class='txt-light'>Light - Outline</option>
+				<option value="btn btn-outline-primary" class='txt-primary'>Blue - Outline</option>
+				<option value="btn btn-outline-secondary" class='txt-secondary'>Gray - Outline</option>
+				<option value="btn btn-outline-success" class='txt-success'>Green - Outline</option>
+				<option value="btn btn-outline-danger" class='txt-danger'>Red - Outline</option>
+				<option value="btn btn-outline-warning" class='txt-warning'>Yellow - Outline</option>
+				<option value="btn btn-outline-info" class='txt-info'>Turquoise - Outline</option>
+				<option value="btn btn-outline-dark" class='txt-dark'>Dark - Outline</option>
+				<option value="btn btn-light" class='txt-light'>Light - Fill</option>
+				<option value="btn btn-primary" class='txt-primary'>Blue - Fill</option>
+				<option value="btn btn-secondary" class='txt-secondary'>Gray - Fill</option>
+				<option value="btn btn-success" class='txt-success'>Green - Fill</option>
+				<option value="btn btn-danger" class='txt-danger'>Red - Fill</option>
+				<option value="btn btn-warning" class='txt-warning'>Yellow - Fill</option>
+				<option value="btn btn-info" class='txt-info'>Turquoise - Fill</option>
+				<option value="btn btn-dark" class='txt-dark'>Dark - Fill</option>
 			</select>
 			</div>
 
@@ -213,6 +227,7 @@ if( isset($_POST["account"]) ){
 			<label id="isMoving<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["isMoving"] ?></label>
 			<label id="smId<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["smId"] ?></label>
 			<label id="logo<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["logo"] ?></label>
+			<label id="btnColor<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["btnColor"] ?></label>
 		</div>
 		</td>
 		</tr>
@@ -241,5 +256,6 @@ if( isset($_POST["account"]) ){
 		$("input[name=text]").val($("#text"+id).html());
 		$("select[name=smId]").val($("#smId"+id).html());
 		$("select[name=hidden]").val($("#hidden"+id).html());
+		$("select[name=btnColor]").val($("#btnColor"+id).html());
 	})
 </script>
