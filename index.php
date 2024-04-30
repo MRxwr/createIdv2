@@ -31,15 +31,12 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
 
 <body>
     <div class="container">
-        <div class="col-xs-12">
+    <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
-                <div class="row">
-                    <div class="col-6"><img class="backdrop linktree"></div>
-                    <div class="col-6" style="align-content: center;"><h2 style="color: #ffffff;"><?php echo $account["fullName"] ?></h2></div>
-                    <div class="col-12" style="align-content: center;padding-top: 20px;"><h4 style="color: #ffffff;"><?php echo $account["details"] ?></h4></div>
-                </div>
+                <img class="backdrop linktree">
+                <h2 style="color: #ffffff; padding-top: 20px;"><?php echo $account["details"] ?></h2>
             </div>
-        </div>
+    </div>
     </div>
 
 
