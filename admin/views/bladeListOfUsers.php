@@ -163,7 +163,7 @@ if( isset($_POST["fullName"]) ){
 
 			<div class="col-md-6">
 			<label><?php echo direction("Single Color","لون واحد") ?></label>
-			<input type="text" name="singleColor" class="form-control">
+			<input type="color" name="singleColor" class="form-control">
 			</div>
 
 			<div class="col-md-6">
