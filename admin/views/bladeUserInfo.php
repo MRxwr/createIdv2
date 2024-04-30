@@ -141,7 +141,7 @@ if( isset($_POST["account"]) ){
 		
 		<tbody>
 		<?php 
-		if( $profiles = selectDB("profiles","`status` = '0' AND `hidden` = '1' AND `userId` = '{$_GET["id"]}' ORDER BY `rank` ASC") ){
+		if( $profiles = selectDB("profiles","`status` = '0' AND `userId` = '{$_GET["id"]}' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($profiles); $i++ ){
 		$counter = $i + 1;
 		if ( $profiles[$i]["hidden"] == 2 ){
