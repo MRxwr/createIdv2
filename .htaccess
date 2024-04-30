@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # Redirect to default page when there is nothing after the domain
-RewriteRule ^$ /default [L]
+RewriteRule ^$ /default.php [L]
 
 # Rewrite URLs without .php extension to corresponding PHP files
 RewriteCond %{REQUEST_FILENAME}.php -f
