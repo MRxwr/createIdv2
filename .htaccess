@@ -4,4 +4,4 @@ RewriteEngine On
 RewriteRule ^$ /default.php [L]
 
 # Rewrite any other requests with a parameter
-RewriteRule ^([^/]+)/?$ /index.php?account=$1 [L,QSA]
+RewriteRule ^([^/]+)/?$ /?account=$1 [L,QSA]
