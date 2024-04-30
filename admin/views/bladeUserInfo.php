@@ -28,6 +28,11 @@ if( isset($_POST["account"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
+		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+            $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+		}else{
+            $_POST["logo"] = "";
+        }
 		if( insertDB("profiles", $_POST) ){
 			header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 		}else{
@@ -38,6 +43,12 @@ if( isset($_POST["account"]) ){
 		<?php
 		}
 	}else{
+		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+            $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+		}else{
+            $imageurl = selectDB("profiles", "`id` = '{$id}'");
+            $_POST["logo"] = $imageurl[0]["logo"];
+        }
 		if( updateDB("profiles", $_POST, "`id` = '{$id}'") ){
 			header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 		}else{
@@ -64,15 +75,7 @@ if( isset($_POST["account"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 
-			<div class="col-md-3">
-			<label><?php echo direction("Moving ?","متحرك ؟") ?></label>
-			<select name="isMoving" class="form-control">
-				<option value="1"><?php echo direction("Yes","نعم") ?></option>
-				<option value="2" selected><?php echo direction("No","لا") ?></option>
-			</select>
-			</div>
-
-			<div class="col-md-3">
+			<div class="col-md-6">
 			<label><?php echo direction("Platform","المنصة") ?></label>
 			<select name="smId" class="form-control">
 				<?php
@@ -85,18 +88,31 @@ if( isset($_POST["account"]) ){
 			</select>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-6">
 			<label><?php echo direction("Account","الحساب") ?></label>
 			<input type="text" name="account" class="form-control" required>
 			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Moving ?","متحرك ؟") ?></label>
+			<select name="isMoving" class="form-control">
+				<option value="1"><?php echo direction("Yes","نعم") ?></option>
+				<option value="2" selected><?php echo direction("No","لا") ?></option>
+			</select>
+			</div>
 			
-			<div class="col-md-3">
+			<div class="col-md-4">
 			<label><?php echo direction("Hide Link","أخفي الرابط") ?></label>
 			<select name="hidden" class="form-control">
 				<option value="1">No</option>
 				<option value="2">Yes</option>
 			</select>
 			</div>	
+
+			<div class="col-md-4">
+			<label><?php echo direction("Icon","الايقونه") ?></label>
+			<input type="file" name="logo" class="form-control">
+			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
@@ -155,7 +171,8 @@ if( isset($_POST["account"]) ){
 		}
 		$isMoving = ( $profiles[$i]["isMoving"] == 1 ) ? direction("Yes","نعم"): direction("No","لا");
 		if( $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'") ){
-			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? "{$socialMedia[0]["icon"]} - {$socialMedia[0]["title"]}" : "" ;
+			$profileLogo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"]) ) ? "<img src='../logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>" : $socialMedia[0]["icon"] ;
+			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? "{$profileLogo} - {$socialMedia[0]["title"]}" : "" ;
 		}else{
 			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? $socialMedia[0]["title"] : "" ;
 		}
@@ -180,6 +197,7 @@ if( isset($_POST["account"]) ){
 			<label id="hidden<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["hidden"] ?></label>
 			<label id="isMoving<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["isMoving"] ?></label>
 			<label id="smId<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["smId"] ?></label>
+			<label id="logo<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["logo"] ?></label>
 		</div>
 		</td>
 		</tr>
