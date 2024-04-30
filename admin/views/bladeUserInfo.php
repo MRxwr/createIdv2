@@ -76,7 +76,7 @@ if( isset($_POST["account"]) ){
 			<label><?php echo direction("Platform","المنصة") ?></label>
 			<select name="smId" class="form-control">
 				<?php
-				if( $socialMedia = selectDB("socialMedia","`hidden` = '1' AND `status` = '0'") ){
+				if( $socialMedia = selectDB("socialMedia","`hidden` = '1' AND `status` = '0' ORDER BY `title` ASC") ){
 					for( $i = 0; $i < sizeof($socialMedia); $i++ ){
 						echo "<option value='{$socialMedia[$i]["id"]}'>{$socialMedia[$i]["title"]}</option>";
 					}
