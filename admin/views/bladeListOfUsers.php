@@ -138,7 +138,7 @@ if( isset($_POST["fullName"]) ){
 			<select name="bgType" class="form-control" required>
 				<?php 
 				$bgTypesValue = [1,2,3];
-				$bgTypes = [direction("Three Colors Moving","ثلاث ألوان متحركه"),direction("Single Color","لون واحد"),direction("Image","صورة")];
+				$bgTypes = [direction("Four Colors Moving","أربع ألوان متحركه"),direction("Single Color","لون واحد"),direction("Image","صورة")];
 				for( $i = 0; $i < sizeof($bgTypesValue); $i++){
 					echo "<option value='{$bgTypesValue[$i]}'>{$bgTypes[$i]}</option>";
 				}
@@ -146,19 +146,24 @@ if( isset($_POST["fullName"]) ){
 			</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Color 1","اللون الأول") ?></label>
-			<input type="color" name="threeColors1" class="form-control">
+			<input type="color" name="fourColors1" class="form-control">
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Color 2","اللون الثاني") ?></label>
-			<input type="color" name="threeColors2" class="form-control">
+			<input type="color" name="fourColors2" class="form-control">
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Color 3","اللون الثالث") ?></label>
-			<input type="color" name="threeColors3" class="form-control">
+			<input type="color" name="fourColors3" class="form-control">
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Color 4","اللون الرابع") ?></label>
+			<input type="color" name="fourColors4" class="form-control">
 			</div>
 
 			<div class="col-md-6">
@@ -187,7 +192,7 @@ if( isset($_POST["fullName"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Users","قائمة الموظفين") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of Users","قائمة المستخدمين") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
@@ -246,9 +251,10 @@ if( isset($_POST["fullName"]) ){
 					<label id="logo<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
 					<label id="bgImage<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgImage"] ?></label>
 					<label id="singleColor<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["singleColor"] ?></label>
-					<label id="threeColors1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors1"] ?></label>
-					<label id="threeColors2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors2"] ?></label>
-					<label id="threeColors3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors3"] ?></label>
+					<label id="fourColors1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors1"] ?></label>
+					<label id="fourColors2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors2"] ?></label>
+					<label id="fourColors3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors3"] ?></label>
+					<label id="fourColors4<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors4"] ?></label>
 					<label id="bgType<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgType"] ?></label>
 				</div>				
 				</td>
@@ -278,9 +284,10 @@ if( isset($_POST["fullName"]) ){
 		$("input[name=url]").val($("#url"+id).html());
 		$("input[name=details]").val($("#details"+id).html());
 		$("input[name=singleColor]").val($("#singleColor"+id).html());
-		$("input[name=threeColors1]").val($("#threeColors1"+id).html());
-		$("input[name=threeColors2]").val($("#threeColors2"+id).html());
-		$("input[name=threeColors3]").val($("#threeColors3"+id).html());
+		$("input[name=fourColors1]").val($("#fourColors1"+id).html());
+		$("input[name=fourColors2]").val($("#fourColors2"+id).html());
+		$("input[name=fourColors3]").val($("#fourColors3"+id).html());
+		$("input[name=fourColors4]").val($("#fourColors4"+id).html());
 		$("select[name=bgType]").val($("#bgType"+id).html());
 		$("input[name=password]").prop("required",false);
 		$("input[name=logo]").prop("required",false);
