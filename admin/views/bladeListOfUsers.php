@@ -249,6 +249,7 @@ if( isset($_POST["fullName"]) ){
 					<label id="threeColors1<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors1"] ?></label>
 					<label id="threeColors2<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors2"] ?></label>
 					<label id="threeColors3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["threeColors3"] ?></label>
+					<label id="bgType<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgType"] ?></label>
 				</div>				
 				</td>
 				</tr>
@@ -280,6 +281,7 @@ if( isset($_POST["fullName"]) ){
 		$("input[name=threeColors1]").val($("#threeColors1"+id).html());
 		$("input[name=threeColors2]").val($("#threeColors2"+id).html());
 		$("input[name=threeColors3]").val($("#threeColors3"+id).html());
+		$("select[name=bgType]").val($("#bgType"+id).html());
 		$("input[name=password]").prop("required",false);
 		$("input[name=logo]").prop("required",false);
 		$("input[name=bgImage]").prop("required",false);
