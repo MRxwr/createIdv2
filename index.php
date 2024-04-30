@@ -1,11 +1,4 @@
 <?php
-function isValidURL($url){
-    $url_components = parse_url($url);
-    if(isset($url_components['scheme']) && isset($url_components['host'])){
-        return true;
-    }
-    return false;
-}
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["account"]) && !empty($_GET["account"]) ){
@@ -55,16 +48,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                 for( $i = 0; $i < sizeof($profiles); $i++ ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                    var_dump(isValidURL($profiles[$i]["link"]));
-                    if( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ){
-                        if( isValidURL($profiles[$i]["link"]) ){
-                            $url = $profiles[$i]["link"];
-                        }else{
-                            $url = "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}";
-                        }
-                    }else{
-                        $url = "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}";
-                    }
+                    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
