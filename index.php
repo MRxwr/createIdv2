@@ -48,9 +48,11 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                 for( $i = 0; $i < sizeof($profiles); $i++ ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                    $link = "window.open('".str_replace(" ","",$socialMedia[0]["link"])."{$profiles[$i]["account"]}')";
-                    $svg = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
-                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='btn btn-outline-light {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$svg}<span style='flex: 1; text-align: center;'>{$profiles[$i]["account"]}</span>
+                    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
+                    $link = "window.open('".str_replace(" ","",$url)."')";
+                    $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
+                    $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
+                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='btn btn-outline-light {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;'>{$text}</span>
                     </button>
                 </div>";
                 }
