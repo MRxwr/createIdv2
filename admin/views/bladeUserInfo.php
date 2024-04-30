@@ -75,7 +75,7 @@ if( isset($_POST["account"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 
-			<div class="col-md-6">
+			<div class="col-md-4">
 			<label><?php echo direction("Platform","المنصة") ?></label>
 			<select name="smId" class="form-control">
 				<?php
@@ -88,8 +88,13 @@ if( isset($_POST["account"]) ){
 			</select>
 			</div>
 
-			<div class="col-md-6">
-			<label><?php echo direction("Account","الحساب") ?></label>
+			<div class="col-md-4">
+			<label><?php echo direction("Text","النص") ?></label>
+			<input type="text" name="text" class="form-control" required>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Account / Link","الحساب / الرابط") ?></label>
 			<input type="text" name="account" class="form-control" required>
 			</div>
 
@@ -149,6 +154,7 @@ if( isset($_POST["account"]) ){
 		<tr>
 		<th>#</th>
 		<th><?php echo direction("Platform","المنصة") ?></th>
+		<th><?php echo direction("Text","النص") ?></th>
 		<th><?php echo direction("Account","الحساب") ?></th>
 		<th><?php echo direction("Moving","متحرك") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
@@ -183,6 +189,7 @@ if( isset($_POST["account"]) ){
 		<input name="id[]" class="form-control" type="hidden" value="<?php echo $profiles[$i]["id"] ?>">
 		</td>
 		<td><?php echo $socialMediaTitle ?></td>
+		<td id="text<?php echo $profiles[$i]["id"]?>" ><?php echo $profiles[$i]["text"] ?></td>
 		<td id="account<?php echo $profiles[$i]["id"]?>" ><?php echo $profiles[$i]["account"] ?></td>
 		<td><?php echo $isMoving ?></td>
 		<td class="text-nowrap">
@@ -223,6 +230,7 @@ if( isset($_POST["account"]) ){
 
 		$("select[name=isMoving]").val($("#isMoving"+id).html()).focus();
 		$("input[name=account]").val($("#account"+id).html());
+		$("input[name=text]").val($("#text"+id).html());
 		$("select[name=smId]").val($("#smId"+id).html());
 		$("select[name=hidden]").val($("#hidden"+id).html());
 	})
