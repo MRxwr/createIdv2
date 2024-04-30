@@ -9,10 +9,10 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
             $profiles = [];
         }
     }else{
-        header("LOCATION: default.php");die();
+        header("LOCATION: /");die();
     }
 }else{
-    header("LOCATION: default.php");die();
+    header("LOCATION: /");die();
 }
 ?>
 
