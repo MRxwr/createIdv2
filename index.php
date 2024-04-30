@@ -1,9 +1,22 @@
+<?php
+if( !isset($_GET["account"]) || empty($_GET["account"]) ){
+    header("default.php");die();
+}elseif( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){
+    if( $profiles = selectDB("profiles","`userId` = '{$account[0]["id"]}'")){
+    }else{
+        $profiles = [];
+    }
+}else{
+    header("default.php");die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 
 <head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     
-    <title>OrderMerch Pre-Lander Template</title>
+    <title>Create ID - <?php echo strtoupper($account["url"]) ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,7 +29,7 @@
     <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
                 <img class="backdrop linktree">
-                <h2 style="color: #ffffff; padding-top: 20px;">Instagram Growth Expert</h2>
+                <h2 style="color: #ffffff; padding-top: 20px;"><?php echo $account["details"] ?></h2>
             </div>
     </div>
     </div>
@@ -48,7 +61,7 @@
     </div>
 
         <div class="text-center">
-            <a href="https://www.ordermerch.net/" style="color: #34312f;" target="_blank">powered by OrderMerch</a>
+            <a href="https://www.createkuwait.com/" style="color: #34312f;" target="_blank">made with (k) Create co.</a>
         </div>
 
 
