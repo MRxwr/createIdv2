@@ -98,7 +98,14 @@ if( isset($_POST["account"]) ){
 			<input type="text" name="account" class="form-control" required>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
+			<label><?php echo direction("Button Color","لون الزر") ?></label>
+			<select name="btnColor" class="form-control">
+				<option value="btn btn-outline-primary"><label class='txt-primary'>Blue</label></option>
+			</select>
+			</div>
+
+			<div class="col-md-3">
 			<label><?php echo direction("Moving ?","متحرك ؟") ?></label>
 			<select name="isMoving" class="form-control">
 				<option value="1"><?php echo direction("Yes","نعم") ?></option>
@@ -106,7 +113,7 @@ if( isset($_POST["account"]) ){
 			</select>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Hide Link","أخفي الرابط") ?></label>
 			<select name="hidden" class="form-control">
 				<option value="1">No</option>
@@ -114,7 +121,7 @@ if( isset($_POST["account"]) ){
 			</select>
 			</div>	
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Icon","الايقونه") ?></label>
 			<input type="file" name="logo" class="form-control">
 			</div>
