@@ -1,13 +1,13 @@
 <?php
 if( !isset($_GET["account"]) || empty($_GET["account"]) ){
-    header("default.php");die();
+    header("LOCATION: default.php");die();
 }elseif( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){
     if( $profiles = selectDB("profiles","`userId` = '{$account[0]["id"]}'")){
     }else{
         $profiles = [];
     }
 }else{
-    header("default.php");die();
+    header("LOCATION: default.php");die();
 }
 ?>
 
