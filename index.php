@@ -49,7 +49,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
                     $link = "window.open('".str_replace(" ","",$socialMedia[0]["link"])."{$profiles[$i]["account"]}')";
-                    $svg = $socialMedia[0]["icon"];
+                    $svg = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='btn btn-outline-light {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$svg}<span style='flex: 1; text-align: center;'>{$profiles[$i]["account"]}</span>
                     </button>
                 </div>";
