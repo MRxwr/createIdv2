@@ -1,4 +1,6 @@
 <?php
+require_once("admin/includes/config.php");
+require_once("admin/includes/functions.php");
 if( !isset($_GET["account"]) || empty($_GET["account"]) ){
     header("LOCATION: default.php");die();
 }elseif( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){
