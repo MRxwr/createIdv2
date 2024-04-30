@@ -10,11 +10,19 @@ body {
 	width: 100wh;
 	height: 90vh;
 	color: #fff;
-	background: linear-gradient(-45deg,<?php echo "$accountColors[0],$accountColors[1],$accountColors[2],$accountColors[3]" ?>);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
 	animation: Gradient 15s ease infinite;
+	<?php
+	if( $account["bgType"] == 1 ){
+		echo "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});";
+	}elseif($account["bgType"] == 2 ){
+		echo "background-color:{$account["singleColor"]};";
+	}else{
+		echo "background-size: {$account["bgSize"]};background-repeat: {$account["bgRepeat"]};background-image: url(logos/{$account["bgImage"]});";
+	}
+	?>
 }
 
 @-webkit-keyframes Gradient {
