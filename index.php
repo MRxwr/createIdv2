@@ -48,7 +48,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                 for( $i = 0; $i < sizeof($profiles); $i++ ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                    echo filter_var($profiles[$i]["link"], FILTER_VALIDATE_URL);
+                    var_dump(filter_var($profiles[$i]["link"], FILTER_VALIDATE_URL));
                     if( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ){
                         if( filter_var($profiles[$i]["link"], FILTER_VALIDATE_URL) !== false){
                             $url = $profiles[$i]["link"];
