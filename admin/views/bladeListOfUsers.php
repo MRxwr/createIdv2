@@ -273,6 +273,8 @@ if( isset($_POST["fullName"]) ){
 					<label id="fourColors3<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors3"] ?></label>
 					<label id="fourColors4<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fourColors4"] ?></label>
 					<label id="bgType<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgType"] ?></label>
+					<label id="bgSize<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgSize"] ?></label>
+					<label id="bgRepeat<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["bgRepeat"] ?></label>
 				</div>				
 				</td>
 				</tr>
@@ -306,6 +308,8 @@ if( isset($_POST["fullName"]) ){
 		$("input[name=fourColors3]").val($("#fourColors3"+id).html());
 		$("input[name=fourColors4]").val($("#fourColors4"+id).html());
 		$("select[name=bgType]").val($("#bgType"+id).html());
+		$("select[name=bgSize]").val($("#bgSize"+id).html());
+		$("select[name=bgRepeat]").val($("#bgRepeat"+id).html());
 		$("input[name=password]").prop("required",false);
 		$("input[name=logo]").prop("required",false);
 		$("input[name=bgImage]").prop("required",false);
