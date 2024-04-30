@@ -48,15 +48,20 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                 for( $i = 0; $i < sizeof($profiles); $i++ ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                    if( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ){
-                        if( filter_var($profiles[$i]["link"], FILTER_VALIDATE_URL) ){
-                            $url = $profiles[$i]["link"];
-                        }else{
+                    if (isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"])) {
+                        $url = $profiles[$i]["link"];
+                        echo "Original URL: $url\n"; // Debug output
+                        if (filter_var($url, FILTER_VALIDATE_URL)) {
+                            echo "Valid URL!\n"; // Debug output
+                        } else {
+                            echo "URL validation failed!\n"; // Debug output
                             $url = "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}";
                         }
-                    }else{
+                    } else {
                         $url = "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}";
                     }
+                    
+                    echo "Final URL: $url\n"; // Debug output
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
