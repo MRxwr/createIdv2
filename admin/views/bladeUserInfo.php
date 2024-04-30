@@ -1,25 +1,25 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('socialMedia',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('profiles',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('socialMedia',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('profiles',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 	}
 }
 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('socialMedia',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+	if( updateDB('profiles',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
 		header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 	}
 }
 
 if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
-		updateDB("socialMedia",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+		updateDB("profiles",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
 	header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 }
@@ -28,7 +28,7 @@ if( isset($_POST["account"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
-		if( insertDB("socialMedia", $_POST) ){
+		if( insertDB("profiles", $_POST) ){
 			header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 		}else{
 		?>
@@ -38,7 +38,7 @@ if( isset($_POST["account"]) ){
 		<?php
 		}
 	}else{
-		if( updateDB("socialMedia", $_POST, "`id` = '{$id}'") ){
+		if( updateDB("profiles", $_POST, "`id` = '{$id}'") ){
 			header("LOCATION: ?v=UserInfo&id={$_GET["id"]}");die();
 		}else{
 		?>
@@ -65,22 +65,34 @@ if( isset($_POST["account"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-6">
-			<label><?php echo direction("Title","العنوان") ?></label>
-			<input type="text" name="title" class="form-control" required>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Moving ?","متحرك ؟") ?></label>
+			<select name="isMoving" class="form-control">
+				<option value="1"><?php echo direction("Yes","نعم") ?></option>
+				<option value="2" selected><?php echo direction("No","لا") ?></option>
+			</select>
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Platform","المنصة") ?></label>
+			<select name="smId" class="form-control">
+				<?php
+				if( $socialMedia = selectDB("socialMedia","`hidden` = '1' AND `status` = '0'") ){
+					for( $i = 0; $i < sizeof($socialMedia); $i++ ){
+						echo "<option value='{$socialMedia[$i]["id"]}'>{$socialMedia[$i]["title"]}</option>";
+					}
+				}
+				?>
+			</select>
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Account","الحساب") ?></label>
+			<input type="text" name="account" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
-			<label><?php echo direction("Link","رابط") ?></label>
-			<input type="text" name="link" class="form-control" required>
-			</div>
-			
-			<div class="col-md-6">
-			<label><?php echo direction("Icon","الصورة الرمزية") ?></label>
-			<input type="text" name="icon" class="form-control" required>
-			</div>
-			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Hide Link","أخفي الرابط") ?></label>
 			<select name="hidden" class="form-control">
 				<option value="1">No</option>
@@ -106,7 +118,7 @@ if( isset($_POST["account"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Links","قائمة الروابط") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of Accounts","قائمة الحسابات") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
@@ -121,46 +133,56 @@ if( isset($_POST["account"]) ){
 		<thead>
 		<tr>
 		<th>#</th>
-		<th><?php echo direction("Title","العنوان") ?></th>
-		<th><?php echo direction("Link","الرابط") ?></th>
-		<th><?php echo direction("Icon","الصورة") ?></th>
+		<th><?php echo direction("Rank","الترتيب") ?></th>
+		<th><?php echo direction("Platform","المنصة") ?></th>
+		<th><?php echo direction("Account","الحساب") ?></th>
+		<th><?php echo direction("Moving","متحرك") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
 		</thead>
 		
 		<tbody>
 		<?php 
-		if( $banners = selectDB("socialMedia","`status` = '0' ORDER BY `rank` ASC") ){
-		for( $i = 0; $i < sizeof($banners); $i++ ){
+		if( $profiles = selectDB("profiles","`status` = '0' ORDER BY `rank` ASC") ){
+		for( $i = 0; $i < sizeof($profiles); $i++ ){
 		$counter = $i + 1;
-		if ( $banners[$i]["hidden"] == 2 ){
+		if ( $profiles[$i]["hidden"] == 2 ){
 			$icon = "fa fa-eye";
-			$link = "?v={$_GET["v"]}&show={$banners[$i]["id"]}";
+			$link = "?v={$_GET["v"]}&show={$profiles[$i]["id"]}";
 			$hide = direction("Show","إظهار");
 		}else{
 			$icon = "fa fa-eye-slash";
-			$link = "?v={$_GET["v"]}&hide={$banners[$i]["id"]}";
+			$link = "?v={$_GET["v"]}&hide={$profiles[$i]["id"]}";
 			$hide = direction("Hide","إخفاء");
+		}
+		$isMoving = ( $profiles[$i]["id"] == 1 ) ? direction("Yes","نعم"): direction("No","لا");
+		if( $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'") ){
+			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? "{$socialMedia[0]["icon"]} - {$socialMedia[0]["title"]}" : "" ;
+		}else{
+			$socialMediaTitle = ( isset($socialMedia[0]["title"]) ) ? $socialMedia[0]["title"] : "" ;
 		}
 		?>
 		<tr>
 		<td>
 		<input name="rank[]" class="form-control" type="number" value="<?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?>">
-		<input name="id[]" class="form-control" type="hidden" value="<?php echo $banners[$i]["id"] ?>">
+		<input name="id[]" class="form-control" type="hidden" value="<?php echo $profiles[$i]["id"] ?>">
 		</td>
-		<td id="title<?php echo $banners[$i]["id"]?>" ><?php echo $banners[$i]["title"] ?></td>
-		<td id="link<?php echo $banners[$i]["id"]?>" ><?php echo $banners[$i]["link"] ?></td>
-		<td><?php echo $banners[$i]["icon"] ?></td>
+		<td><?php echo $socialMediaTitle ?></td>
+		<td id="account<?php echo $profiles[$i]["id"]?>" ><?php echo $profiles[$i]["account"] ?></td>
+		<td><?php echo $isMoving ?></td>
 		<td class="text-nowrap">
 		
-		<a id="<?php echo $banners[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+		<a id="<?php echo $profiles[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 		</a>
-		<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
+		<a href="<?php echo $link."&id={$profiles[$i]["userId"]}" ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
 		</a>
-		<a href="<?php echo "?v={$_GET["v"]}&delId={$banners[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
+		<a href="<?php echo "?v={$_GET["v"]}&delId={$profiles[$i]["id"]}&id={$profiles[$i]["userId"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
 		</a>
-		<div style="display:none"><label id="hidden<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["hidden"] ?></label></div>
-		<div style="display:none"><label id="iconText<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["icon"] ?></label></div>		
+		<div style="display:none">
+			<label id="hidden<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["hidden"] ?></label>
+			<label id="isMoving<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["isMoving"] ?></label>
+			<label id="smId<?php echo $profiles[$i]["id"]?>"><?php echo $profiles[$i]["smId"] ?></label>
+		</div>
 		</td>
 		</tr>
 		<?php
@@ -182,11 +204,10 @@ if( isset($_POST["account"]) ){
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
         $("input[name=update]").val(id);
-		var link = $("#link"+id).html();
-		var title = $("#title"+id).html();
-		var iconeText = $("#iconText"+id).html();
-		$("input[name=link]").val(link);
-		$("input[name=title]").val(title).focus();
-		$("input[name=icon]").val(iconeText);
+
+		$("select[name=isMoving]").val($("#isMoving"+id).html()).focus();
+		$("input[name=account]").val($("#account"+id).html());
+		$("select[name=smId]").val($("#smId"+id).html());
+		$("select[name=hidden]").val($("#hidden"+id).html());
 	})
 </script>
