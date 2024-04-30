@@ -166,12 +166,29 @@ if( isset($_POST["fullName"]) ){
 			<input type="color" name="fourColors4" class="form-control">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-12">
 			<label><?php echo direction("Single Color","لون واحد") ?></label>
 			<input type="color" name="singleColor" class="form-control">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-4">
+			<label><?php echo direction("Size","الحجم") ?></label>
+			<select name="bgSize" class="form-control">
+				<option>cover</option>
+				<option>inherit</option>
+				<option>contain</option>
+			</select>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Repeat","تكرار") ?></label>
+			<select name="bgRepeat" class="form-control">
+				<option>repeat</option>
+				<option>no-repeat</option>
+			</select>
+			</div>
+
+			<div class="col-md-4">
 			<label><?php echo direction("Background","الخلفية") ?></label>
 			<input type="file" name="bgImage" class="form-control">
 			</div>
