@@ -48,7 +48,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                 for( $i = 0; $i < sizeof($profiles); $i++ ){
                     $shake = ( $profiles[$i]["isMoving"] == 1 ) ? "shake" : "";
                     $socialMedia = selectDB("socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
+                    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) && filter_var($profiles[$i]["link"], FILTER_VALIDATE_URL) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
