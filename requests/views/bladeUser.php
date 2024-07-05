@@ -2,6 +2,7 @@
 if( isset($_GET["action"]) && !empty($_GET["action"]) ){
     if( $_GET["action"] == "Login" ){
         if( !isset($_POST["email"]) || empty($_POST["email"]) ){
+            echo outputError(array("msg" => "Email Required"));die();
         }else{
             if( $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","") ){
             }else{
