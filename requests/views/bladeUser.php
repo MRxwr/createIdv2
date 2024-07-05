@@ -19,7 +19,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             if( $user[0]["status"] == 1 ){
                 echo outputError(array("msg" => "Email Not Found"));die();
             }
-            echo outputData($user[0]);die();
+            echo outputData(array("id" => $user[0]["id"]));die();
         }else{
             echo outputError(array("msg" => "Wrong Password"));die();
         }
