@@ -13,6 +13,12 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Password Required"));die();
         }
         if( $user = selectDBNew("users",[$_POST["email"],sha1($_POST["password"])],"`email` LIKE ? AND `password` LIKE ?","") ){
+            if( $user[0]["hidden"] == 2 ){
+                echo outputError(array("msg" => "Account Suspended, Please Contact Administrator"));die();
+            }
+            if( $user[0]["status"] == 1 ){
+                echo outputError(array("msg" => "Email Not Found"));die();
+            }
             echo outputData($user[0]);die();
         }else{
             echo outputError(array("msg" => "Wrong Password"));die();
