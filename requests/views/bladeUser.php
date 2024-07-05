@@ -12,7 +12,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         if( !isset($_POST["password"]) || empty($_POST["password"]) ){
             echo outputError(array("msg" => "Password Required"));die();
         }
-        if( $user = selectDBNew("users",[$_POST["email"],$_POST["password"]],"`email` LIKE ? AND `password` LIKE ?","") ){
+        if( $user = selectDBNew("users",[$_POST["email"],sha1($_POST["password"])],"`email` LIKE ? AND `password` LIKE ?","") ){
             echo outputData($user[0]);die();
         }else{
             echo outputError(array("msg" => "Wrong Password"));die();
