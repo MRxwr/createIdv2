@@ -1,6 +1,6 @@
 <?php
 if( isset($_GET["action"]) && !empty($_GET["action"]) ){
-    if( $_GET["action"] == "login" ){
+    if( $_GET["action"] == "Login" ){
         if( !isset($_POST["email"]) || empty($_POST["email"]) ){
         }else{
             if( $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","") ){
@@ -16,6 +16,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             echo outputError(array("msg" => "Wrong Password"));
         }
+    }else{
+        echo outputError(array("msg" => "Action Not Found"));
     }
 }else{
 
