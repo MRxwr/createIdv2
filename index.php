@@ -2,7 +2,7 @@
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["account"]) && !empty($_GET["account"]) ){
-    if( $account = selectDB("users","`url` LIKE '".strtolower($_GET["account"])."' AND `hidden` = '1' AND `status` = '0'") ){ 
+    if( $account = selectDB("users",[strtolower($_GET["account"])],"`url` LIKE ? AND `hidden` = '1' AND `status` = '0'","") ){ 
         $account = $account[0];
         if( $profiles = selectDB("profiles","`userId` = '{$account["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
         }else{
