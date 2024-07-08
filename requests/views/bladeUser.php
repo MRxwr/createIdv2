@@ -82,7 +82,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
-            /*
+            
             if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
                 $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
             }else{
@@ -93,7 +93,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }else{
                 unset($_POST["bgImage"]);
             }
-                
+            outputData($_POST);die();
+               /* 
             if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
                 $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
                 echo outputData($user[0]);die();
