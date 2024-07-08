@@ -19,7 +19,9 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             if( $user[0]["status"] == 1 ){
                 echo outputError(array("msg" => "Email Not Found"));die();
             }
-            echo outputData(array("id" => $user[0]["id"]));die();
+            $token = password_hash(generateRandomString(), PASSWORD_BCRYPT);
+            updateDB("users",array("keepMeAlive"=>$token),"`id` = '{$user[0]["id"]}'","");
+            echo outputData(array("token" => $token));die();
         }else{
             echo outputError(array("msg" => "Wrong Password"));die();
         }
@@ -40,6 +42,22 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Email Not Found"));die();
             }
         }
+    }elseif( $_GET["action"] == "Profile" ){
+        if( !isset($_POST["token"]) || empty($_POST["token"]) ){
+            echo outputError(array("msg" => "Token Required"));die();
+        }else{
+            if( $user = selectDBNew("users",[$_POST["token"]],"`keepMeAlive` LIKE ?","") ){
+                $unsetList = ["password","date","keepMeAlive","status","hidden"];
+                foreach ($unsetList as $key => $value) {
+                    unset($user[0][$value]);
+                }
+                echo outputData($user[0]);die();
+            }else{
+                echo outputError(array("msg" => "Token Not Found"));die();
+            }
+        }
+    }elseif( $_GET["action"] == "Token" ){
+        
     }else{
         echo outputError(array("msg" => "Action Not Found"));die();
     }
