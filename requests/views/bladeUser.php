@@ -92,7 +92,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }else{
                 unset($_POST["bgImage"]);
             }
-            if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
+            if( updateDB("users",$_POST,"`keepMeAlive` LIKE '{$token}'") ){
                 $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
                 $unsetList = ["password","date","keepMeAlive","status","hidden","id"];
                 foreach ($unsetList as $key => $value) {

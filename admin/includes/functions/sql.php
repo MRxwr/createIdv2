@@ -212,7 +212,7 @@ function updateDB($table, $data, $where) {
         }
         $params .= "s";
     }
-    echo $sql .= " WHERE " . $where;die();
+    $sql .= " WHERE " . $where;die();
     $stmt = $dbconnect->prepare($sql); 
     $values = array_values($data);
     $stmt->bind_param($params, ...$values);
