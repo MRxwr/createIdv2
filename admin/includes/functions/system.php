@@ -19,6 +19,22 @@ function forgetPass($data){
 	$domainName = strstr($settingsWebsite, '.', true);
 	$domainName = substr($domainName, strpos($domainName, '//') + 2);
 	$curl = curl_init();
+	var_dump(array(
+		'site' => "{$settingsTitle}",
+		'subject' => "Forget Password - {$settingsTitle}",
+		'body' => "<center>
+				<img src='".encryptImage("logos/{$settingslogo}")."' style='width:200px;height:200px'>
+				<p>&nbsp;</p>
+				<p>Dear {$data["email"]},</p>
+				<p>Your new password at {$settingsWebsite} is:<br>
+				</p>
+				<p style='font-size: 25px; color: red'><strong>{$data["password"]}</strong></p>
+				<p>Best regards,<br>
+				<strong>{$settingsEmail}</strong></p>
+				</center>",
+		'from_email' => "noreply@{$domainName}.com",
+		'to_email' => $data["email"]
+	));
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => 'https://createid.link/api/v1/send/notify',
 		CURLOPT_RETURNTRANSFER => true,
