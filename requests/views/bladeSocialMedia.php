@@ -12,9 +12,11 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError($error);die();
         }
         if( $socialMedia = selectDBNew("socialMedia",[0],"`status` LIKE ? ORDER BY title ASC","") ){
-            $unsetList = ["status","date","hidden","rank"];
-            foreach ($unsetList as $key => $value) {
-                unset($socialMedia[0][$value]);
+            $unsetList = ["status","date","hidden","rank","link"];
+            foreach ($socialMedia as $key => $value) {
+                foreach ($unsetList as $key2 => $value2) {
+                    unset($socialMedia[$key][$value2]);
+                }
             }
             echo outputData($socialMedia);die();
         }
