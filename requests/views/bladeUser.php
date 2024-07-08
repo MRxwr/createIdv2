@@ -77,6 +77,14 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Token Not Found"));die();
             }
         }
+    }elseif( $_GET["action"] == "Logout" ){
+        $token = checkAuth();
+        if( empty($token) ){
+            echo outputError(array("msg" => "Token Required"));die();
+        }else{
+            updateDB("users",array("keepMeAlive"=>0),"`keepMeAlive` = '{$token}'","");
+            echo outputData(array("msg" => "Logged Out Successfully"));die();
+        }
     }elseif( $_GET["action"] == "ChangePassword"){
         $token = checkAuth();
         if( empty($token) ){
