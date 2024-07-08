@@ -216,7 +216,6 @@ function updateDB($table, $data, $where) {
     $stmt = $dbconnect->prepare($sql); 
     $values = array_values($data);
     $stmt->bind_param($params, ...$values);
-    
     if( isset($_GET["v"]) && !empty($_GET["v"]) ){
         $array = array(
             "userId" => $userID,
@@ -227,8 +226,6 @@ function updateDB($table, $data, $where) {
         );
         LogsHistory($array);
     }
-    
-
     if ($stmt->execute()) {
         return 1;
     } else {

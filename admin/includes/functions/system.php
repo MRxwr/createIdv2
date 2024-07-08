@@ -310,7 +310,7 @@ function manifestGenerate(){
 
 function checkAuth(){
 	$token = str_replace("Bearer ","",getallheaders()["Authorization"]);
-	if( $check = selectDB("users",[$token],"`keepMeAlive` = ?","") ){
+	if( $check = selectDBNew("users",[$token],"`keepMeAlive` = ?","") ){
 		return $token;
 	}else{
 		return 0;
