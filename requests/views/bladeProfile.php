@@ -34,6 +34,9 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
+            if( !isset($_POST["id"]) || empty($_POST["id"]) ){
+                echo outputError(array("msg" => "Profile Id Required"));die();
+            }
             $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
             $_POST["userId"] = $user[0]["id"];
             if( updateDB("profiles",$_POST,"`id` = '{$_POST["id"]}'") ){
