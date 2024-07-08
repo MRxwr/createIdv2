@@ -46,6 +46,7 @@ function forgetPass($data){
 		),
 	));
 	if ( $response = curl_exec($curl) ){
+		var_dump($response);die();
 		curl_close($curl);
 		return true;
 	}else{
