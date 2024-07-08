@@ -77,6 +77,28 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Token Not Found"));die();
             }
         }
+    }elseif( $_GET["action"] == "EditProfile" ){
+        $token = checkAuth();
+        if( empty($token) ){
+            echo outputError(array("msg" => "Token Required"));die();
+        }else{
+            if ( isset($_FILES['logo']['tmp_name']) && !empty($_FILES['logo']['tmp_name']) ){
+                $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+            }else{
+                unset($_POST["logo"]);
+            }
+            if ( isset($_FILES['bgImage']['tmp_name']) && !empty($_FILES['bgImage']['tmp_name']) ){
+                $_POST["bgImage"] = uploadImageBanner($_FILES['bgImage']['tmp_name']);
+            }else{
+                unset($_POST["bgImage"]);
+            }
+            if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
+                $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
+                echo outputData($user[0]);die();
+            }else{
+                echo outputError(array("msg" => "Failed To Update Profile"));die();
+            }
+        }
     }elseif( $_GET["action"] == "Logout" ){
         $token = checkAuth();
         if( empty($token) ){
