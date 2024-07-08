@@ -82,12 +82,12 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
-            if ( isset($_FILES['logo']['tmp_name']) && !empty($_FILES['logo']['tmp_name']) ){
+            if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
                 $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
             }else{
                 unset($_POST["logo"]);
             }
-            if ( isset($_FILES['bgImage']['tmp_name']) && !empty($_FILES['bgImage']['tmp_name']) ){
+            if (is_uploaded_file($_FILES['bgImage']['tmp_name'])) {
                 $_POST["bgImage"] = uploadImageBanner($_FILES['bgImage']['tmp_name']);
             }else{
                 unset($_POST["bgImage"]);
