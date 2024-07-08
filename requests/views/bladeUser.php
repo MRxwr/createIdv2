@@ -77,7 +77,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Token Not Found"));die();
             }
         }
-    }elseif( $_GET["action"] == "changePassword"){
+    }elseif( $_GET["action"] == "ChangePassword"){
         $token = checkAuth();
         if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
