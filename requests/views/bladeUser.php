@@ -53,6 +53,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }
         }
     }elseif( $_GET["action"] == "Profile" ){
+        var_dump(getallheaders());
         if( !isset($_POST["token"]) || empty($_POST["token"]) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
