@@ -53,11 +53,11 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }
         }
     }elseif( $_GET["action"] == "Profile" ){
-        var_dump(getallheaders());
-        if( !isset($_POST["token"]) || empty($_POST["token"]) ){
+        $token = checkAuth();
+        if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
-            if( $user = selectDBNew("users",[$_POST["token"]],"`keepMeAlive` LIKE ?","") ){
+            if( $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","") ){
                 $unsetList = ["password","date","keepMeAlive","status","hidden"];
                 foreach ($unsetList as $key => $value) {
                     unset($user[0][$value]);

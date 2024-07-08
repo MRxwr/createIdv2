@@ -307,4 +307,13 @@ function manifestGenerate(){
     $modifiedJsonContent = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     file_put_contents($jsonAdminFilePath, $modifiedJsonContent);
 }
+
+function checkAuth(){
+	$token = str_replace("Bearer ","",getallheaders()["Authorization"]);
+	if( $check = selectDB("users",[$token],"`keepMeAlive` = ?","") ){
+		return $token;
+	}else{
+		return 0;
+	}
+}
 ?>
