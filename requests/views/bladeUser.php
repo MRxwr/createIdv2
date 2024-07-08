@@ -93,13 +93,14 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }else{
                 unset($_POST["bgImage"]);
             }
-                */
+                
             if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
                 $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
                 echo outputData($user[0]);die();
             }else{
                 echo outputError(array("msg" => "Failed To Update Profile"));die();
             }
+                */
         }
     }elseif( $_GET["action"] == "Logout" ){
         $token = checkAuth();
