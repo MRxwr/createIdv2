@@ -58,7 +58,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
             if( $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","") ){
-                $unsetList = ["password","date","keepMeAlive","status","hidden"];
+                $unsetList = ["password","date","keepMeAlive","status","hidden","id"];
                 foreach ($unsetList as $key => $value) {
                     unset($user[0][$value]);
                 }
@@ -67,8 +67,36 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Token Not Found"));die();
             }
         }
-    }elseif( $_GET["action"] == "Token" ){
-        
+    }elseif( $_GET["action"] == "Register" ){
+        if( !isset($_POST["email"]) || empty($_POST["email"]) ){
+            echo outputError(array("msg" => "Email Required"));die();
+        }else{
+            if( $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","") ){
+                echo outputError(array("msg" => "Email Already Exist"));die();
+            }
+        }
+        if( !isset($_POST["password"]) || empty($_POST["password"]) ){
+            echo outputError(array("msg" => "Password Required"));die();
+        }
+        if( !isset($_POST["fullName"]) || empty($_POST["fullName"]) ){
+            echo outputError(array("msg" => "Page name Required"));die();
+        }
+        if( !isset($_POST["phone"]) || empty($_POST["phone"]) ){
+            echo outputError(array("msg" => "Phone number Required"));die();
+        }
+        if( !isset($_POST["url"]) || empty($_POST["url"]) ){
+            echo outputError(array("msg" => "Page URL Required"));die();
+        }elseif( $url = selectDBNew("users",[$_POST["url"]],"`url` LIKE ?","") ){
+            echo outputError(array("msg" => "Page URL Already Exist"));die();
+        }
+        if( insertDB("users",$_POST) ){
+            $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","");
+            $token = password_hash(generateRandomString(), PASSWORD_BCRYPT);
+            updateDB("users",array("keepMeAlive"=>$token),"`id` = '{$user[0]["id"]}'","");
+            echo outputData(array("msg" => "Registered Successfully","token" => $token));die();
+        }else{
+            echo outputError(array("msg" => "Failed To Register"));die();
+        }
     }else{
         echo outputError(array("msg" => "Action Not Found"));die();
     }
