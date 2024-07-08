@@ -93,8 +93,12 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 unset($_POST["bgImage"]);
             }
             if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
-                /*$user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
-                echo outputData($user[0]);die();*/
+                $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
+                $unsetList = ["password","date","keepMeAlive","status","hidden","id"];
+                foreach ($unsetList as $key => $value) {
+                    unset($user[0][$value]);
+                }
+                echo outputData($user[0]);die();
             }else{
                 echo outputError(array("msg" => "Failed To Update Profile"));die();
             }
