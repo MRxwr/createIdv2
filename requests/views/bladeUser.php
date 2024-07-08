@@ -92,7 +92,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }else{
                 unset($_POST["bgImage"]);
             }
-            outputData($_POST);die();
+            echo outputData($_POST);die();
                /* 
             if( updateDB("users",$_POST,"`keepMeAlive` LIKE {$token}") ){
                 $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
