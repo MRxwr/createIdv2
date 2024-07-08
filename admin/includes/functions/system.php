@@ -32,7 +32,7 @@ function forgetPass($data){
 			'site' => "{$settingsTitle}",
 			'subject' => "Forget Password - {$settingsTitle}",
 			'body' => "<center>
-					<img src='".encryptImage("logos/{$settingslogo}")."' style='width:200px;height:200px'>
+					<img src='{$settingsWebsite}/".encryptImage("logos/{$settingslogo}")."' style='width:200px;height:200px'>
 					<p>&nbsp;</p>
 					<p>Dear {$data["email"]},</p>
 					<p>Your new password at {$settingsWebsite} is:<br>
