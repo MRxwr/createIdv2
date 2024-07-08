@@ -23,10 +23,27 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             echo outputError(array("msg" => "Wrong Password"));die();
         }
+    }elseif( $_GET["action"] == "Forget" ){
+        if( !isset($_POST["email"]) || empty($_POST["email"]) ){
+            echo outputError(array("msg" => "Email Required"));die();
+        }else{
+            if( $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","") ){
+                $newPass = generateRandomString();
+                updateDB("users",array("password"=>sha1($newPass)),"`id` = '{$user[0]["id"]}'","");
+                $data = array(
+                    "email" => $user[0]["email"],
+                    "password" => $newPass
+                );
+                forgetPass($data);
+                echo outputData(array("msg" => "Password Sent To Your Email"));die();
+            }else{
+                echo outputError(array("msg" => "Email Not Found"));die();
+            }
+        }
     }else{
         echo outputError(array("msg" => "Action Not Found"));die();
     }
 }else{
-
+    echo outputError(array("msg" => "Action Not Set"));die();
 }
 ?>
