@@ -82,7 +82,6 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         if( empty($token) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
-            
             if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
                 $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
             }else{
