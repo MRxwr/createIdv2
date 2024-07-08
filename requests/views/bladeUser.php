@@ -36,6 +36,16 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Wrong Password"));die();
         }
     }elseif( $_GET["action"] == "Forget" ){
+        if ( isset(getallheaders()["createidheader"]) ){
+            $headerAPI =  getallheaders()["createidheader"];
+        }else{
+            $error = array("msg"=>"Please set headres");
+            echo outputError($error);die();
+        }
+        if ( $headerAPI != "createIdCreate" ){
+            $error = array("msg"=>"headers value is wrong");
+            echo outputError($error);die();
+        }
         if( !isset($_POST["email"]) || empty($_POST["email"]) ){
             echo outputError(array("msg" => "Email Required"));die();
         }else{
@@ -67,7 +77,29 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Token Not Found"));die();
             }
         }
+    }elseif( $_GET["action"] == "changePassword"){
+        $token = checkAuth();
+        if( empty($token) ){
+            echo outputError(array("msg" => "Token Required"));die();
+        }else{
+            if( !isset($_POST["password"]) || empty($_POST["password"]) ){
+                echo outputError(array("msg" => "Password Required"));die();
+            }else{
+                updateDB("users",array("password"=>sha1($_POST["password"])),"`keepMeAlive` = '{$token}'","");
+                echo outputData(array("msg" => "Password Changed Successfully"));die();
+            }
+        }
     }elseif( $_GET["action"] == "Register" ){
+        if ( isset(getallheaders()["createidheader"]) ){
+            $headerAPI =  getallheaders()["createidheader"];
+        }else{
+            $error = array("msg"=>"Please set headres");
+            echo outputError($error);die();
+        }
+        if ( $headerAPI != "createIdCreate" ){
+            $error = array("msg"=>"headers value is wrong");
+            echo outputError($error);die();
+        }
         if( !isset($_POST["email"]) || empty($_POST["email"]) ){
             echo outputError(array("msg" => "Email Required"));die();
         }else{
