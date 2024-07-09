@@ -86,13 +86,15 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                         }
                     }
                     // for gatewayResponse and gatewayPayload json_decode
+                    /*
                     foreach ($orders as $key => $value) {
                         $orders[$key]["gatewayResponse"] = json_decode($orders[$key]["gatewayResponse"],true);
                         $orders[$key]["gatewayPayload"] = json_decode($orders[$key]["gatewayPayload"],true);
                     }
+                    */
                     // add package details
                     foreach ($orders as $key => $value) {
-                        $orders[$key]["package"] = selectDB("packages","`id` = '{$orders[$key]["packageId"]}'")[0];
+                        $orders[$key]["package"] = selectDB("package","`id` = '{$orders[$key]["packageId"]}'")[0];
                     }
                     echo outputData($orders);die();
                 }else{
