@@ -7,14 +7,15 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
         }
+        var_dump($user);
+        /*
         if( isset($_POST["package"]) && !empty($_POST["package"]) ){
             $package = selectDBNew("package",[$_POST["package"]],"`id` = ?'","");
             $price = ( $package[0]["discountType"] == 2 ? $package[0]["price"] - ($package[0]["price"] * $package[0]["discount"] / 100) : $package[0]["price"] - $package[0]["discount"]);
         }else{
             echo outputError(array("msg" => "Package Not Set"));die();
         }
-        var_dump($price);
-        /*
+        
         $data = array(
             "orderId" => getOrderId(),
             "price" => $price,
