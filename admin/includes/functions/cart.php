@@ -3,7 +3,7 @@
 function getCartId(){
 	jump:
 	$randomCart = rand("00000000","99999999");
-	if( $cart = selectDB("cart", "`cartId` = '{$randomCart}'") ){
+	if( $cart = selectDB("orders", "`getwayId` = '{$randomCart}'") ){
 		goto jump;
 	}else{
 		return $randomCart;
