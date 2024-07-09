@@ -54,5 +54,11 @@
 	<!-- Init JavaScript -->
 	<script src="dist/js/init.js?x=1"></script>
 	<script src="js/main.js"></script>
+
+	<!-- Tinymce JavaScript -->
+	<script src="../vendors/bower_components/tinymce/tinymce.min.js"></script>
+				
+	<!-- Tinymce Wysuhtml5 Init JavaScript -->
+	<script src="dist/js/tinymce-data.js"></script>
 </body>
 </html>
