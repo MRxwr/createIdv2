@@ -335,4 +335,75 @@ function sendOrderToAllowMENA($orderId){
 		curl_close($curl);
 	}
 }
+
+function getOrderId(){
+	jump:
+	$randomCart = rand("00000000","99999999");
+	//convert to hexadecimal
+	$randomCart = dechex($randomCart);
+	if( selectDB("orders", "`gatewayId` = '{$randomCart}'") ){
+		goto jump;
+	}else{
+		return $randomCart;
+	}
+}
+
+function submitUpayment($data){
+	$postData = "
+	{
+		'products': [
+			{
+				'name': '{$data["title"]}',
+				'description': '{$data["description"]}',
+				'price': {$data["price"]},
+				'quantity': 1
+			}
+		],
+		'order': {
+			'id': '{$data["orderId"]}',
+			'reference': '{$data["userId"]}'',
+			'description': '{$data["description"]}',
+			'currency': 'KWD',
+			'amount': {$data["price"]}
+		},
+		'language': 'en',
+		'reference': {
+			'id': '{$data["orderId"]}'
+		},
+		'customer': {
+			'name': '{$data["name"]}',
+			'email': '{$data["email"]}',
+			'mobile': '+{$data["mobile"]}'
+		},
+		'returnUrl': '{$data["returnURL"]}',
+		'cancelUrl': '{$data["cancelURL"]}',
+		'notificationUrl': '{$data["returnURL"]}',
+	}
+	";
+
+	$curl = curl_init();
+	curl_setopt_array($curl, [
+	CURLOPT_URL => "https://sandboxapi.upayments.com/api/v1/charge",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_POSTFIELDS => $postData,
+	CURLOPT_HTTPHEADER => [
+		"Authorization:  jtest123",
+		"accept: application/json",
+		"content-type: application/json"
+	],
+	]);
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+	curl_close($curl);
+	if ($err) {
+		echo "cURL Error #:" . $err;
+	}else{
+		echo $response;
+	}
+}
 ?>
