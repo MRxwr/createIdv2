@@ -219,11 +219,15 @@ if( isset($_POST["enTitle"]) ){
         var arDetails = $("#ar_Details"+id).html();
         var discountType = $("#discountType"+id).html();
         var discount = $("#discount"+id).html();
+        var price = $("#price"+id).html();
+        var period = $("#period"+id).html();
 		$("input[name=enTitle]").val(enTitle).focus();
 		$("input[name=arTitle]").val(arTitle);
-        $("textarea[name=enDetails]").val(enDetails);
-        $("textarea[name=arDetails]").val(arDetails);
+        $("textarea[name=enDetails]").html(enDetails);
+        $("textarea[name=arDetails]").html(arDetails);
         $("select[name=discountType]").val(discountType);
         $("input[name=discount]").val(discount);
+        $("input[name=price]").val(price);
+        $("input[name=period]").val(period);
 	})
 </script>
