@@ -392,7 +392,7 @@ function submitUpayment($data){
 	CURLOPT_CUSTOMREQUEST => "POST",
 	CURLOPT_POSTFIELDS => $postData,
 	CURLOPT_HTTPHEADER => [
-		"Authorization:  jtest123",
+		"Authorization: Bearer jtest123",
 		"accept: application/json",
 		"content-type: application/json"
 	],
