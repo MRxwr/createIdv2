@@ -38,6 +38,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         );
         if( $pay = submitUpayment($data) ){
             $insertData["link"] = $pay["data"]["data"]["link"];
+            var_dump($insertData);
             if( insertDB("orders",$insertData) ){
                 echo outputData($pay);die();
             }else{
