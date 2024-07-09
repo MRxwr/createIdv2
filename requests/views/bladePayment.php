@@ -38,11 +38,14 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         );
         if( $pay = submitUpayment($data) ){
             $insertData["link"] = $pay["data"]["data"]["link"];
+            /*
             if( insertDB("orders",$insertData) ){
                 echo outputData($pay);die();
             }else{
                 echo outputError(array("msg" => "Order Not Inserted"));die();
             }
+                */
+                echo outputData($pay);die();
         }else{
             echo outputError(array("msg" => "Payment Not Submitted"));die();
         }
