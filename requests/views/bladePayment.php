@@ -96,6 +96,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     // add package details
                     foreach ($orders as $key => $value) {
                         $orders[$key]["package"] = selectDB("package","`id` = '{$orders[$key]["packageId"]}'")[0];
+                        //unset hidden, status, date and rank from package array
+                        unset($orders[$key]["package"]["hidden"], $orders[$key]["package"]["status"], $orders[$key]["package"]["date"], $orders[$key]["package"]["rank"]);
                     }
                     echo outputData($orders);die();
                 }else{
