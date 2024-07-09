@@ -9,8 +9,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }
         
         if( isset($_POST["package"]) && !empty($_POST["package"]) ){
-            $package = selectDBNew("package",[$_POST["package"]],"`id` = ?'","");
-            var_dump($package);die();
+            $package = selectDBNew("package",[$_POST["package"]],"`id` = ?","");
             $price = ( $package[0]["discountType"] == 2 ? $package[0]["price"] - ($package[0]["price"] * $package[0]["discount"] / 100) : $package[0]["price"] - $package[0]["discount"]);
         }else{
             echo outputError(array("msg" => "Package Not Set"));die();
