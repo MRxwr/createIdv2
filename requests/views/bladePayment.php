@@ -13,6 +13,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             echo outputError(array("msg" => "Package Not Set"));die();
         }
+        var_dump($price);
+        /*
         $data = array(
             "orderId" => getOrderId(),
             "price" => $price,
@@ -45,6 +47,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             echo outputError(array("msg" => "Payment Not Submitted"));die();
         }
+            */
     }elseif( $_GET["action"] == "Success" ){
         $orderId = isset($_GET["orderId"]) && !empty($_GET["orderId"]) ? $_GET["orderId"] : "";
         $order = selectDB("orders","`gatewayId` = '{$orderId}'");
