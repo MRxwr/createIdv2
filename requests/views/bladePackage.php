@@ -12,6 +12,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError($error);die();
         }
         if( $packages = selectDBNew("package",[1,0],"`hidden` = ? AND `status` ? ORDER BY rank ASC","") ){
+            var_dump($packages);
             $unsetList = ["status","date","hidden"];
             foreach ($packages as $key => $value) {
                 foreach ($unsetList as $key2 => $value2) {
