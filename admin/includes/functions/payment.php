@@ -365,7 +365,7 @@ function submitUpayment($data){
 		),
 		"language" => "en",
 		"reference" => array(
-			"id" => $data["orderId"]
+			"id" => "{$data["orderId"]}"
 		),
 		"customer" => array(
 			"name" => $data["name"],
@@ -376,7 +376,7 @@ function submitUpayment($data){
 		"cancelUrl" => $data["cancelURL"],
 		"notificationUrl" => $data["returnURL"]
 	);
-
+	print_r(json_encode($postData));
 	$curl = curl_init();
 	curl_setopt_array($curl, [
 	CURLOPT_URL => "https://sandboxapi.upayments.com/api/v1/charge",
