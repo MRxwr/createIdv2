@@ -182,8 +182,8 @@ if( isset($_POST["title"]) ){
             </a>
             <a href="<?php echo "?v={$_GET["v"]}&delId={$banners[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
             </a>
-            <div style="display:none"><label id="enDetails<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["enDetails"] ?></label></div>
-            <div style="display:none"><label id="arDetails<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["arDetails"] ?></label></div>
+            <div style="display:none"><label id="en_Details<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["enDetails"] ?></label></div>
+            <div style="display:none"><label id="ar_Details<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["arDetails"] ?></label></div>
             <div style="display:none"><label id="discountType<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["discountType"] ?></label></div>
             <div style="display:none"><label id="discount<?php echo $banners[$i]["id"]?>"><?php echo $banners[$i]["discount"] ?></label></div>
             </td>
@@ -215,8 +215,8 @@ if( isset($_POST["title"]) ){
         $("input[name=update]").val(id);
 		var enTitle = $("#enTitle"+id).html();
 		var arTitle = $("#arTitle"+id).html();
-        var enDetails = $("#enDetails"+id).html();
-        var arDetails = $("#arDetails"+id).html();
+        var enDetails = $("#en_Details"+id).html();
+        var arDetails = $("#ar_Details"+id).html();
         var discountType = $("#discountType"+id).html();
         var discount = $("#discount"+id).html();
 		$("input[name=enTitle]").val(enTitle).focus();
