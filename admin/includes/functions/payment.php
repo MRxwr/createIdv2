@@ -365,7 +365,7 @@ function submitUpayment($data){
 		),
 		"language" => "en",
 		"reference" => array(
-			"id" => "{$data["orderId"]}"
+			"id" => getCartId()
 		),
 		"customer" => array(
 			"name" => $data["name"],

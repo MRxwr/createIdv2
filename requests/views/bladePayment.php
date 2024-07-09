@@ -17,8 +17,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         $data = array(
             "orderId" => getOrderId(),
             "price" => $price,
-            "title" => $package[0]["title"],
-            "description" => $package[0]["title"],
+            "title" => $package[0]["enTitle"],
+            "description" => $package[0]["enTitle"],
             "userId" => $user[0]["id"],
             "name" => $user[0]["fullName"],
             "email" => $user[0]["email"],
