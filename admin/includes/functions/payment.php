@@ -358,14 +358,14 @@ function submitUpayment($data){
 		),
 		"order" => array(
 			"id" => $data["orderId"],
-			"reference" => $data["userId"],
+			"reference" => $data["orderId"],
 			"description" => $data["description"],
 			"currency" => "KWD",
 			"amount" => $data["price"]
 		),
 		"language" => "en",
 		"reference" => array(
-			"id" => getCartId()
+			"id" => $data["orderId"]
 		),
 		"customer" => array(
 			"name" => $data["name"],
