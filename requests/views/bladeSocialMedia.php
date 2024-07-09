@@ -19,6 +19,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 }
             }
             echo outputData($socialMedia);die();
+        }else{
+            echo outputError(array("msg"=>"No social media found"));die();
         }
     }
 }else{
