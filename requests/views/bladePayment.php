@@ -79,7 +79,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             if( $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","") ){
                 if( $orders = selectDB("orders","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC")){
-                    $unsetList = ["hidden", "userId", "gatewayPayload"];
+                    $unsetList = ["hidden", "userId", "gatewayPayload", "gatewayResponse", "link"];
                     foreach ($orders as $key => $value) {
                         foreach ($unsetList as $key2 => $value2) {
                             unset($orders[$key][$value2]);
@@ -89,6 +89,10 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     foreach ($orders as $key => $value) {
                         $orders[$key]["gatewayResponse"] = json_decode($orders[$key]["gatewayResponse"],true);
                         $orders[$key]["gatewayPayload"] = json_decode($orders[$key]["gatewayPayload"],true);
+                    }
+                    // add package details
+                    foreach ($orders as $key => $value) {
+                        $orders[$key]["package"] = selectDB("packages","`id` = '{$orders[$key]["packageId"]}'")[0];
                     }
                     echo outputData($orders);die();
                 }else{
