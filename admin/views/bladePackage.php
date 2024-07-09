@@ -83,17 +83,22 @@ if( isset($_POST["title"]) ){
 			<textarea name="arDetails" class="tinymce" required></textarea>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
+			<label><?php echo direction("Period","المدة") ?></label>
+			<input type="number" step="1" min="0" name="period" class="form-control" required>
+			</div>
+
+			<div class="col-md-3">
 			<label><?php echo direction("Price","السعر") ?></label>
 			<input type="number" step="0.01" min="0" name="price" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Discount","خصم") ?></label>
 			<input type="number" min="0" step="0.01" name="discount" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Discount Type","نوع الخصم") ?></label>
 			<select name="discountType" class="form-control">
 				<option value="1"><?php echo direction("Fixed","ثابت") ?></option>
