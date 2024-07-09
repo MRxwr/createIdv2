@@ -75,7 +75,7 @@ if( isset($_POST["title"]) ){
 
             <div class="col-md-6">
 			<label><?php echo direction("English Details","التفاصيل بالعربي") ?></label>
-			<input type="text" name="enDetails" class="tinymce" required>
+			<textarea name="enDetails" class="tinymce" required></textarea>
 			</div>
 
             <div class="col-md-6">
@@ -203,6 +203,12 @@ if( isset($_POST["title"]) ){
 </div>
 </form>
 </div>
+
+<!-- Tinymce JavaScript -->
+<script src="../vendors/bower_components/tinymce/tinymce.min.js"></script>
+<!-- Tinymce Wysuhtml5 Init JavaScript -->
+<script src="dist/js/tinymce-data.js"></script>
+
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
