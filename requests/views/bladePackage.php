@@ -19,6 +19,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 }
             }
             echo outputData($packages);die();
+        }else{
+            echo outputError(array("msg"=>"No packages found"));die();
         }
     }
 }else{
