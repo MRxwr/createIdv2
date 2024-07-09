@@ -395,9 +395,10 @@ function submitUpayment($data){
 	],
 	]);
 	$response = curl_exec($curl);
+	$response = json_decode($response,true);
 	$err = curl_error($curl);
 	curl_close($curl);
-	if ($err) {
+	if ( isset($response["errors"]) ) {
 		return 0;
 	}else{
 		return $response;
