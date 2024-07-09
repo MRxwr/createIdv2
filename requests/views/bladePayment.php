@@ -45,7 +45,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 echo outputError(array("msg" => "Order Not Inserted"));die();
             }
                 */
-                echo outputData($pay);die();
+                echo outputData(json_decode($pay,true));die();
         }else{
             echo outputError(array("msg" => "Payment Not Submitted"));die();
         }
