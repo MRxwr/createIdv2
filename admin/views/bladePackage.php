@@ -223,8 +223,8 @@ if( isset($_POST["enTitle"]) ){
         var period = $("#period"+id).html();
 		$("input[name=enTitle]").val(enTitle).focus();
 		$("input[name=arTitle]").val(arTitle);
-        $("textarea[name=enDetails]").html(enDetails);
-        $("textarea[name=arDetails]").html(arDetails);
+        $("textarea[name=enDetails]").val(enDetails);
+        $("textarea[name=arDetails]").val(arDetails);
         $("select[name=discountType]").val(discountType);
         $("input[name=discount]").val(discount);
         $("input[name=price]").val(price);
