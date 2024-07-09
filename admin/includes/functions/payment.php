@@ -351,10 +351,12 @@ function getOrderId(){
 function submitUpayment($data){
 	$postData = array(
 		"products" => array(
-			"name" => $data["title"],
-			"description" => $data["description"],
-			"price" => $data["price"],
-			"quantity" => 1	
+			0 => array(
+				"name" => $data["title"],
+				"description" => $data["description"],
+				"price" => $data["price"],
+				"quantity" => 1	
+			),
 		),
 		"order" => array(
 			"id" => $data["orderId"],
