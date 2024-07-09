@@ -349,35 +349,33 @@ function getOrderId(){
 }
 
 function submitUpayment($data){
-	$postData = '{
-		"products": [
-			{
-				"name": '.$data["title"].',
-				"description": '.$data["description"].',
-				"price": '.$data["price"].',
-				"quantity": 1
-			}
-		],
-		"order": {
-			"id": '.$data["orderId"].',
-			"reference": '.$data["userId"].',
-			"description": '.$data["description"].',
-			"currency": "KWD",
-			"amount": '.$data["price"].'
-		},
-		"language": "en",
-		"reference": {
-			"id": '.$data["orderId"].'
-		},
-		"customer": {
-			"name": '.$data["name"].',
-			"email": '.$data["email"].',
-			"mobile": '.$data["mobile"].'
-		},
-		"returnUrl": '.$data["returnURL"].',
-		"cancelUrl": '.$data["cancelURL"].',
-		"notificationUrl": '.$data["returnURL"].',
-	}';
+	$postData = array(
+		"products" => array(
+			"name" => $data["title"],
+			"description" => $data["description"],
+			"price" => $data["price"],
+			"quantity" => 1	
+		),
+		"order" => array(
+			"id" => $data["orderId"],
+			"reference" => $data["userId"],
+			"description" => $data["description"],
+			"currency" => "KWD",
+			"amount" => $data["price"]
+		),
+		"language" => "en",
+		"reference" => array(
+			"id" => $data["orderId"]
+		),
+		"customer" => array(
+			"name" => $data["name"],
+			"email" => $data["email"],
+			"mobile" => $data["mobile"]
+		),
+		"returnUrl" => $data["returnURL"],
+		"cancelUrl" => $data["cancelURL"],
+		"notificationUrl" => $data["returnURL"]
+	);
 
 	$curl = curl_init();
 	curl_setopt_array($curl, [
@@ -388,7 +386,7 @@ function submitUpayment($data){
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => $postData,
+	CURLOPT_POSTFIELDS => json_encode($postData),
 	CURLOPT_HTTPHEADER => [
 		"Authorization: Bearer jtest123",
 		"accept: application/json",
