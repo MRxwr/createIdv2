@@ -79,9 +79,11 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             if( $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","") ){
                 if( $orders = selectDB("orders","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC")){
-                    $unsetList = ["hidden"];
+                    $unsetList = ["hidden", "userId", "gatewayPayload"];
                     foreach ($orders as $key => $value) {
-                        unset($orders[$key]["userId"]);
+                        foreach ($unsetList as $key2 => $value2) {
+                            unset($orders[$key][$value2]);
+                        }
                     }
                     // for gatewayResponse and gatewayPayload json_decode
                     foreach ($orders as $key => $value) {
