@@ -83,6 +83,11 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     foreach ($orders as $key => $value) {
                         unset($orders[$key]["userId"]);
                     }
+                    // for gatewayResponse and gatewayPayload json_decode
+                    foreach ($orders as $key => $value) {
+                        $orders[$key]["gatewayResponse"] = json_decode($orders[$key]["gatewayResponse"],true);
+                        $orders[$key]["gatewayPayload"] = json_decode($orders[$key]["gatewayPayload"],true);
+                    }
                     echo outputData($orders);die();
                 }else{
                     echo outputError(array("msg" => "Orders Not Found"));die();
