@@ -349,37 +349,35 @@ function getOrderId(){
 }
 
 function submitUpayment($data){
-	$postData = "
-	{
-		'products': [
+	$postData = '{
+		"products": [
 			{
-				'name': '{$data["title"]}',
-				'description': '{$data["description"]}',
-				'price': {$data["price"]},
-				'quantity': 1
+				"name": '.$data["title"].',
+				"description": '.$data["description"].',
+				"price": '.$data["price"].',
+				"quantity": 1
 			}
 		],
-		'order': {
-			'id': '{$data["orderId"]}',
-			'reference': '{$data["userId"]}'',
-			'description': '{$data["description"]}',
-			'currency': 'KWD',
-			'amount': {$data["price"]}
+		"order": {
+			"id": '.$data["orderId"].',
+			"reference": '.$data["userId"].',
+			"description": '.$data["description"].',
+			"currency": "KWD",
+			"amount": '.$data["price"].'
 		},
-		'language': 'en',
-		'reference': {
-			'id': '{$data["orderId"]}'
+		"language": "en",
+		"reference": {
+			"id": '.$data["orderId"].'
 		},
-		'customer': {
-			'name': '{$data["name"]}',
-			'email': '{$data["email"]}',
-			'mobile': '+{$data["mobile"]}'
+		"customer": {
+			"name": '.$data["name"].',
+			"email": '.$data["email"].',
+			"mobile": '.$data["mobile"].'
 		},
-		'returnUrl': '{$data["returnURL"]}',
-		'cancelUrl': '{$data["cancelURL"]}',
-		'notificationUrl': '{$data["returnURL"]}',
-	}
-	";
+		"returnUrl": '.$data["returnURL"].',
+		"cancelUrl": '.$data["cancelURL"].',
+		"notificationUrl": '.$data["returnURL"].',
+	}';
 
 	$curl = curl_init();
 	curl_setopt_array($curl, [
