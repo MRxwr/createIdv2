@@ -11,8 +11,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             $error = array("msg"=>"headers value is wrong");
             echo outputError($error);die();
         }
-        if( $packages = selectDBNew("package",[1,0],"`hidden` = ? AND `status` ? ORDER BY title ASC","") ){
-            $unsetList = ["status","date","hidden","link","period",];
+        if( $packages = selectDBNew("package",[1,0],"`hidden` = ? AND `status` ? ORDER BY rank ASC","") ){
+            $unsetList = ["status","date","hidden"];
             foreach ($packages as $key => $value) {
                 foreach ($unsetList as $key2 => $value2) {
                     unset($packages[$key][$value2]);
