@@ -75,12 +75,12 @@ if( isset($_POST["title"]) ){
 
             <div class="col-md-6">
 			<label><?php echo direction("English Details","التفاصيل بالعربي") ?></label>
-			<textarea name="enDetails" class="tinymce" required></textarea>
+			<textarea name="enDetails" class="tinymce"></textarea>
 			</div>
 
             <div class="col-md-6">
 			<label><?php echo direction("Arabic Details","التفاصيل بالعربي") ?></label>
-			<textarea name="arDetails" class="tinymce" required></textarea>
+			<textarea name="arDetails" class="tinymce"></textarea>
 			</div>
 			
 			<div class="col-md-3">
