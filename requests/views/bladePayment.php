@@ -37,8 +37,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             "gatewayPayload" => json_encode($data)
         );
         if( $pay = submitUpayment($data) ){
-            $insertData["link"] = $pay["data"]["data"]["link"];
-            var_dump($insertData);
+            $insertData["link"] = $pay["data"]["link"];
             if( insertDB("orders",$insertData) ){
                 echo outputData($pay);die();
             }else{
