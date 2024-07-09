@@ -34,6 +34,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             "price" => $package[0]["price"],
             "discount" => $package[0]["discount"],
             "discountType" => $package[0]["discountType"],
+            "finalPrice" => $price,
             "gatewayPayload" => json_encode($data)
         );
         if( $pay = submitUpayment($data) ){
