@@ -24,7 +24,7 @@ if( isset($_POST["updateRank"]) ){
 	header("LOCATION: ?v=Package");
 }
 
-if( isset($_POST["title"]) ){
+if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
