@@ -22,7 +22,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             "userId" => $user[0]["id"],
             "name" => $user[0]["fullName"],
             "email" => $user[0]["email"],
-            "mobile" => $user[0]["mobile"],
+            "mobile" => $user[0]["phone"],
             "returnURL" => "{$settingsWebsite}/requests/index.php?a=Payment&action=Success",
             "cancelURL" => "{$settingsWebsite}/requests/index.php?a=Payment&action=Fail",
         );
