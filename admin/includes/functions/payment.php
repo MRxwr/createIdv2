@@ -376,7 +376,7 @@ function submitUpayment($data){
 		"cancelUrl" => $data["cancelURL"],
 		"notificationUrl" => $data["returnURL"]
 	);
-	$postData = json_encode($postData);die();
+	echo $postData = json_encode($postData);die();
 	$curl = curl_init();
 	curl_setopt_array($curl, [
 	CURLOPT_URL => "https://sandboxapi.upayments.com/api/v1/charge",
