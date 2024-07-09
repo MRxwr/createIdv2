@@ -75,12 +75,12 @@ if( isset($_POST["enTitle"]) ){
 
             <div class="col-md-6">
 			<label><?php echo direction("English Details","التفاصيل بالعربي") ?></label>
-			<textarea name="enDetails" class="tinymce"></textarea>
+			<textarea name="enDetails" id="enDetails" class="tinymce"></textarea>
 			</div>
 
             <div class="col-md-6">
 			<label><?php echo direction("Arabic Details","التفاصيل بالعربي") ?></label>
-			<textarea name="arDetails" class="tinymce"></textarea>
+			<textarea name="arDetails" id="arDetails" class="tinymce"></textarea>
 			</div>
 			
 			<div class="col-md-3">
@@ -223,8 +223,8 @@ if( isset($_POST["enTitle"]) ){
         var period = $("#period"+id).html();
 		$("input[name=enTitle]").val(enTitle).focus();
 		$("input[name=arTitle]").val(arTitle);
-        tinymce.get('textarea[name=enDetails]').setContent(enDetails);
-        tinymce.get('textarea[name=arDetails]').setContent(arDetails);
+        tinymce.get('enDetails').setContent(enDetails);
+        tinymce.get('arDetails').setContent(arDetails);
         $("select[name=discountType]").val(discountType);
         $("input[name=discount]").val(discount);
         $("input[name=price]").val(price);
