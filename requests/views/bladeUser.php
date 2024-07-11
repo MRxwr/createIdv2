@@ -111,6 +111,20 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             updateDB("users",array("keepMeAlive"=>0),"`keepMeAlive` = '{$token}'","");
             echo outputData(array("msg" => "Logged Out Successfully"));die();
         }
+    }elseif( $_GET["action"] == "Delete" ){
+        $token = checkAuth();
+        if( empty($token) ){
+            echo outputError(array("msg" => "Token Required"));die();
+        }else{
+            $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
+            $updateData = array(
+                "keepMeAlive" => 0,
+                "hidden"=> 2,
+                "email" => "Deleted-{$user[0]["email"]}",
+            );
+            updateDB("users",$updateData,"`keepMeAlive` = '{$token}'","");
+            echo outputData(array("msg" => "Account Deleted Successfully"));die();
+        }
     }elseif( $_GET["action"] == "ChangePassword"){
         $token = checkAuth();
         if( empty($token) ){
