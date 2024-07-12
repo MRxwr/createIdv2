@@ -51,7 +51,6 @@ if( isset($_POST["enTitle"]) ){
                     firebaseNotification($notificationData, transformArray($batchUsers));
                 }
             }
-            
             if( $users = selectDB2('firebaseToken','users', "`language` = 1 AND `hidden` = '1' AND `status` = '0'") ){
                 $notificationData = array(
                     "title" => $_POST["arTitle"],
@@ -68,8 +67,7 @@ if( isset($_POST["enTitle"]) ){
                     firebaseNotification($notificationData, transformArray($batchUsers));
                 }
             }
-            
-			//header("LOCATION: ?v=Notification");
+			header("LOCATION: ?v=Notification");
 		}else{
 		?>
 		<script>
