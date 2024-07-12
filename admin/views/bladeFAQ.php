@@ -24,12 +24,11 @@ if( isset($_POST["updateRank"]) ){
 	header("LOCATION: ?v=FAQ");
 }
 
-if( isset($_POST["title"]) ){
+if( isset($_POST["enQuestion"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
 		if( insertDB('faq', $_POST) ){
-            die();
 			header("LOCATION: ?v=FAQ");
 		}else{
 		?>
