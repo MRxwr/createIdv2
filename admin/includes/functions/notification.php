@@ -273,4 +273,12 @@ function transformArray($inputArray) {
         return !empty($token);
     }));
 }
+
+function addSeen($users){
+	$modifiedArray = array_map(function($item, $index) {
+		$item["seen"] = $index;
+		return $item;
+	}, $users, array_keys($users));
+	return $modifiedArray;
+}
 ?>

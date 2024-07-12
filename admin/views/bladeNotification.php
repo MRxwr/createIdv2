@@ -33,40 +33,42 @@ if( isset($_POST["enTitle"]) ){
 		}else{
             $_POST["image"] = "";
         }
-		
+		if( $users = selectDB2('id','users', "`hidden` = '1' AND `status` = '0' AND `firebaseToken` != ''") ){
+            $_POST["listOfUsers"] = addSeen($users);
+        }
+        if( $users = selectDB2('firebaseToken','users', "`language` = 0 AND `hidden` = '1' AND `status` = '0' AND `firebaseToken` != ''") ){
+            $notificationData = array(
+                "title" => $_POST["enTitle"],
+                "body" => $_POST["enNotification"],
+                "image" => $_POST["image"],
+            );
+            $batchSize = 1000;
+            $totalUsers = count($users);
+            $numBatches = ceil($totalUsers / $batchSize);
+            for ($i = 0; $i < $numBatches; $i++) {
+                $startIndex = $i * $batchSize;
+                $endIndex = min(($i + 1) * $batchSize - 1, $totalUsers - 1);
+                $batchUsers = array_slice($users, $startIndex, $endIndex - $startIndex + 1);
+                firebaseNotification($notificationData, transformArray($batchUsers));
+            }
+        }
+        if( $users = selectDB2('firebaseToken','users', "`language` = 1 AND `hidden` = '1' AND `status` = '0' AND `firebaseToken` != ''") ){
+            $notificationData = array(
+                "title" => $_POST["arTitle"],
+                "body" => $_POST["arNotification"],
+                "image" => $_POST["image"],
+            );
+            $batchSize = 1000;
+            $totalUsers = count($users);
+            $numBatches = ceil($totalUsers / $batchSize);
+            for ($i = 0; $i < $numBatches; $i++) {
+                $startIndex = $i * $batchSize;
+                $endIndex = min(($i + 1) * $batchSize - 1, $totalUsers - 1);
+                $batchUsers = array_slice($users, $startIndex, $endIndex - $startIndex + 1);
+                firebaseNotification($notificationData, transformArray($batchUsers));
+            }
+        }
 		if( insertDB('notification', $_POST) ){
-            if( $users = selectDB2('firebaseToken','users', "`language` = 0 AND `hidden` = '1' AND `status` = '0'") ){
-                $notificationData = array(
-                    "title" => $_POST["enTitle"],
-                    "body" => $_POST["enNotification"],
-                    "image" => $_POST["image"],
-                );
-                $batchSize = 1000;
-                $totalUsers = count($users);
-                $numBatches = ceil($totalUsers / $batchSize);
-                for ($i = 0; $i < $numBatches; $i++) {
-                    $startIndex = $i * $batchSize;
-                    $endIndex = min(($i + 1) * $batchSize - 1, $totalUsers - 1);
-                    $batchUsers = array_slice($users, $startIndex, $endIndex - $startIndex + 1);
-                    firebaseNotification($notificationData, transformArray($batchUsers));
-                }
-            }
-            if( $users = selectDB2('firebaseToken','users', "`language` = 1 AND `hidden` = '1' AND `status` = '0'") ){
-                $notificationData = array(
-                    "title" => $_POST["arTitle"],
-                    "body" => $_POST["arNotification"],
-                    "image" => $_POST["image"],
-                );
-                $batchSize = 1000;
-                $totalUsers = count($users);
-                $numBatches = ceil($totalUsers / $batchSize);
-                for ($i = 0; $i < $numBatches; $i++) {
-                    $startIndex = $i * $batchSize;
-                    $endIndex = min(($i + 1) * $batchSize - 1, $totalUsers - 1);
-                    $batchUsers = array_slice($users, $startIndex, $endIndex - $startIndex + 1);
-                    firebaseNotification($notificationData, transformArray($batchUsers));
-                }
-            }
 			header("LOCATION: ?v=Notification");
 		}else{
 		?>
