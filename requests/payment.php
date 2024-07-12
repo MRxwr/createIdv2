@@ -1,6 +1,6 @@
 <?php
 if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) ){
-    if ( $orderData = checkPayment($_GET["track_id"]) ){
+    if ( $orderData = checkUpayment($_GET["track_id"]) ){
         $orderData = json_decode($orderData,true);
         $order = selectDB("orders","`gatewayId` = '{$orderData["data"]["transaction"]["reference"]}'");
         if( $order[0]["status"] == 0 ){
