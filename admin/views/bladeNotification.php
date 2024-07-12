@@ -35,22 +35,24 @@ if( isset($_POST["enTitle"]) ){
         }
 		
 		if( insertDB('notification', $_POST) ){
-			header("LOCATION: ?v=Notification");
-		}else{
-		?>
-		<script>
-			alert("Could not process your request, Please try again.");
-		</script>
-		<?php
-		}
-	}else{
-		if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-            $_POST["image"] = uploadImageBanner($_FILES['image']['tmp_name']);
-		}else{
-            $imageurl = selectDB("banner", "`id` = '{$id}'");
-            $_POST["image"] = $imageurl[0]["image"];
-        }
-		if( updateDB('notification', $_POST, "`id` = '{$id}'") ){
+            if( $users = selectDB2('firebaseToken','users', "`language` = 0 AND `hidden` = '1' AND `status` = '0'") ){
+                $notificationData = array(
+                    "title" => $_POST["enTitle"],
+                    "body" => $_POST["enBody"],
+                    "image" => $_POST["image"],
+                );
+                firebaseNotification($notificationData, $users);
+            }
+            
+            if( $users = selectDB2('firebaseToken','users', "`language` = 1 AND `hidden` = '1' AND `status` = '0'") ){
+                $notificationData = array(
+                    "title" => $_POST["arTitle"],
+                    "body" => $_POST["arBody"],
+                    "image" => $_POST["image"],
+                );
+                firebaseNotification($notificationData, $users);
+            }
+            
 			header("LOCATION: ?v=Notification");
 		}else{
 		?>
