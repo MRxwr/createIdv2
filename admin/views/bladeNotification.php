@@ -117,7 +117,7 @@ if( isset($_POST["enTitle"]) ){
 			
 			<div class="col-md-6">
                 <label><?php echo direction("Image","الصورة") ?></label>
-                <input type="file" name="image" class="form-control" required>
+                <input type="file" name="image" class="form-control">
 			</div>
 			
 			<div class="col-md-12" style="margin-top:10px">
