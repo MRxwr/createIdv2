@@ -1,5 +1,8 @@
 <?php
-var_dump($orderData = checkUpayment($_GET["track_id"]));die();
+header("Content-Type: application/json; charset=UTF-8");
+require_once("../admin/includes/config.php");
+require_once("../admin/includes/translate.php");
+require_once("../admin/includes/functions.php");
 if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) ){
     if ( $orderData = checkUpayment($_GET["track_id"]) ){
         $orderData = json_decode($orderData,true);
