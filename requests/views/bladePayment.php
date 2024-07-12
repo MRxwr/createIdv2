@@ -23,8 +23,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             "name" => $user[0]["fullName"],
             "email" => $user[0]["email"],
             "mobile" => $user[0]["phone"],
-            "returnURL" => "{$settingsWebsite}/requests/index.php?a=Payment&action=Success",
-            "cancelURL" => "{$settingsWebsite}/requests/index.php?a=Payment&action=Fail",
+            "returnURL" => "{$settingsWebsite}/requests/payment.php",
+            "cancelURL" => "{$settingsWebsite}/requests/payment.php",
         );
         $insertData = array(
             "gatewayId" => $data["orderId"],
@@ -46,32 +46,6 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             }
         }else{
             echo outputError(array("msg" => "Payment Not Submitted"));die();
-        }
-    }elseif( $_GET["action"] == "Success" ){
-        $orderId = isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) ? $_GET["requested_order_id"] : "";
-        $order = selectDB("orders","`gatewayId` = '{$orderId}'");
-        if( $order[0]["status"] == 0 ){
-            $updateData = array(
-                "status" => 1,
-                "gatewayResponse" => json_encode($_GET),
-            );
-            updateDB("orders",$updateData,"`gatewayId` = '{$orderId}'");
-            echo outputData($order);die();
-        }else{
-            echo outputError(array("msg" => "Order Already Completed"));die();
-        }
-    }elseif( $_GET["action"] == "Fail" ){
-        $orderId = isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) ? $_GET["requested_order_id"] : "";
-        $order = selectDB("orders","`gatewayId` = '{$orderId}'");
-        if( $order[0]["status"] == 0 ){
-            $updateData = array(
-                "status" => 2,
-                "gatewayResponse" => json_encode($_GET),
-            );
-            updateDB("orders",$updateData,"`gatewayId` = '{$orderId}'");
-            echo outputError(array("msg" => "Payment Failed"));die();
-        }else{
-            echo outputError(array("msg" => "Order Already Completed"));die();
         }
     }elseif( $_GET["action"] == "List" ){
         $token = checkAuth();

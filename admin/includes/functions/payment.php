@@ -349,6 +349,7 @@ function getOrderId(){
 }
 
 function submitUpayment($data){
+	GLOBAL $PaymentAPIKey;
 	$postData = array(
 		"products" => array(
 			0 => array(
@@ -389,7 +390,7 @@ function submitUpayment($data){
 	CURLOPT_CUSTOMREQUEST => "POST",
 	CURLOPT_POSTFIELDS => json_encode($postData),
 	CURLOPT_HTTPHEADER => [
-		"Authorization: Bearer jtest123",
+		"Authorization: Bearer {$PaymentAPIKey}",
 		"accept: application/json",
 		"content-type: application/json"
 	],
@@ -399,6 +400,32 @@ function submitUpayment($data){
 	$err = curl_error($curl);
 	curl_close($curl);
 	if ( isset($response["errors"]) ) {
+		return 0;
+	}else{
+		return $response;
+	}
+}
+
+function checkUpayment($trackId){
+	GLOBAL $PaymentAPIKey;
+	$curl = curl_init();
+	curl_setopt_array($curl, [
+	CURLOPT_URL => "https://sandboxapi.upayments.com/api/v1/get-payment-status/{$trackId}",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => [
+		"Authorization: Bearer {$PaymentAPIKey}",
+		"accept: application/json"
+	],
+	]);
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+	curl_close($curl);
+	if ($err) {
 		return 0;
 	}else{
 		return $response;
