@@ -408,6 +408,7 @@ function submitUpayment($data){
 
 function checkUpayment($trackId){
 	GLOBAL $PaymentAPIKey;
+	echo "https://sandboxapi.upayments.com/api/v1/get-payment-status/{$trackId}";die();
 	$curl = curl_init();
 	curl_setopt_array($curl, [
 	CURLOPT_URL => "https://sandboxapi.upayments.com/api/v1/get-payment-status/{$trackId}",
