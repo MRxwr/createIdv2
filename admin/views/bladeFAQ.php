@@ -29,6 +29,7 @@ if( isset($_POST["title"]) ){
 	unset($_POST["update"]);
 	if ( $id == 0 ){
 		if( insertDB('faq', $_POST) ){
+            die();
 			header("LOCATION: ?v=FAQ");
 		}else{
 		?>
