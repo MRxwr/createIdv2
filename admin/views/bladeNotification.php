@@ -38,7 +38,7 @@ if( isset($_POST["enTitle"]) ){
             if( $users = selectDB2('firebaseToken','users', "`language` = 0 AND `hidden` = '1' AND `status` = '0'") ){
                 $notificationData = array(
                     "title" => $_POST["enTitle"],
-                    "body" => $_POST["enBody"],
+                    "body" => $_POST["enNotification"],
                     "image" => $_POST["image"],
                 );
                 $batchSize = 1000;
@@ -55,7 +55,7 @@ if( isset($_POST["enTitle"]) ){
             if( $users = selectDB2('firebaseToken','users', "`language` = 1 AND `hidden` = '1' AND `status` = '0'") ){
                 $notificationData = array(
                     "title" => $_POST["arTitle"],
-                    "body" => $_POST["arBody"],
+                    "body" => $_POST["arNotification"],
                     "image" => $_POST["image"],
                 );
                 $batchSize = 1000;
