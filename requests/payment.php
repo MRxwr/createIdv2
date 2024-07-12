@@ -18,7 +18,7 @@ if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) ){
             }else{
                 $updateData = array(
                     "status" => 2,
-                    "gatewayResponse" => json_encode($_GET),
+                    "gatewayResponse" => json_encode($orderData),
                 );
                 updateDB("orders",$updateData,"`gatewayId` = '{$orderData["data"]["transaction"]["reference"]}'");
                 echo outputError(array("msg" => "Payment Failed"));die();
