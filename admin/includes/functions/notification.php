@@ -201,4 +201,70 @@ function sendMailsAdmin($orderId){
 		$response = curl_exec($curl);
 		curl_close($curl);
 }
+
+function firebaseNotification($notificationData){
+	GLOBAL $firebaseKey;
+	$data = array(
+		"registration_ids" => array(
+			"",
+		),
+		"notification" => array(
+			"body" => "{$notificationData["body"]}",
+			"title" => "{$notificationData["title"]}",
+			"sound" => "default",
+			"content_available" => true,
+			"priority" => "high",
+			"badge" => "1",
+			"image" => "{$notificationData["image"]}"
+		),
+		"android" => array(
+			"notification" => array(
+				"image" => "{$notificationData["image"]}"
+			)
+		),
+		"apns" => array(
+			"payload" => array(
+				"aps" => array(
+					"alert" => array(
+						"body" => "{$notificationData["body"]}",
+						"title" => "{$notificationData["title"]}",
+					),
+					"sound" => "default",
+					"badge" => 1,
+					"mutable-content" => 1
+				),
+				"fcm_options" => array(
+					"image" => "{$notificationData["image"]}"
+				)
+			)
+		),
+		"webpush" => array(
+			"notification" => array(
+				"body" => "{$notificationData["body"]}",
+				"title" => "{$notificationData["title"]}",
+				"image" => "{$notificationData["image"]}"
+			)
+		)
+	);
+
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => '',
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 0,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => 'POST',
+	CURLOPT_POSTFIELDS => json_encode($data),
+	CURLOPT_HTTPHEADER => array(
+			"Authorization: key={$firebaseKey}",
+			"Content-Type: application/json"
+		),
+	));
+	$response = curl_exec($curl);
+	curl_close($curl);
+	return json_decode($response, true);
+}
 ?>
