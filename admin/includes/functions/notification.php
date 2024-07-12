@@ -267,4 +267,12 @@ function firebaseNotification($notificationData){
 	curl_close($curl);
 	return json_decode($response, true);
 }
+
+function transformArray($inputArray) {
+    return array_values(array_filter(array_map(function($item) {
+        return $item['firebaseToken'];
+    }, $inputArray), function($token) {
+        return !empty($token);
+    }));
+}
 ?>
