@@ -48,7 +48,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Payment Not Submitted"));die();
         }
     }elseif( $_GET["action"] == "Success" ){
-        $orderId = isset($_GET["order_id"]) && !empty($_GET["order_id"]) ? $_GET["order_id"] : "";
+        $orderId = isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) ? $_GET["requested_order_id"] : "";
         $order = selectDB("orders","`gatewayId` = '{$orderId}'");
         if( $order[0]["status"] == 0 ){
             $updateData = array(
@@ -61,7 +61,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Order Already Completed"));die();
         }
     }elseif( $_GET["action"] == "Fail" ){
-        $orderId = isset($_GET["order_id"]) && !empty($_GET["order_id"]) ? $_GET["order_id"] : "";
+        $orderId = isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) ? $_GET["requested_order_id"] : "";
         $order = selectDB("orders","`gatewayId` = '{$orderId}'");
         if( $order[0]["status"] == 0 ){
             $updateData = array(
