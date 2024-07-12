@@ -1,5 +1,5 @@
 <?php
-var_dump($orderData = checkUpayment($_GET["track_id"]));
+var_dump($orderData = checkUpayment($_GET["track_id"]));die();
 if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) ){
     if ( $orderData = checkUpayment($_GET["track_id"]) ){
         $orderData = json_decode($orderData,true);
