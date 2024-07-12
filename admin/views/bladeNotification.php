@@ -34,7 +34,9 @@ if( isset($_POST["enTitle"]) ){
             $_POST["image"] = "";
         }
 		if( $users = selectDB2('id','users', "`hidden` = '1' AND `status` = '0' AND `firebaseToken` != ''") ){
-            $_POST["listOfUsers"] = addSeen($users);
+            $_POST["listOfUsers"] = json_encode(addSeen($users));
+        }else{
+            $_POST["listOfUsers"] = json_encode(array());
         }
         if( $users = selectDB2('firebaseToken','users', "`language` = 0 AND `hidden` = '1' AND `status` = '0' AND `firebaseToken` != ''") ){
             $notificationData = array(
