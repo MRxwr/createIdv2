@@ -69,7 +69,7 @@ if( isset($_POST["enTitle"]) ){
                 }
             }
             
-			header("LOCATION: ?v=Notification");
+			//header("LOCATION: ?v=Notification");
 		}else{
 		?>
 		<script>

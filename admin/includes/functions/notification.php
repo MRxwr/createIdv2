@@ -263,7 +263,8 @@ function firebaseNotification($notificationData){
 			"Content-Type: application/json"
 		),
 	));
-	$response = curl_exec($curl);
+	echo json_encode($data);
+	var_dump($response = curl_exec($curl));die();
 	curl_close($curl);
 	return json_decode($response, true);
 }
