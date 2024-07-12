@@ -202,12 +202,10 @@ function sendMailsAdmin($orderId){
 		curl_close($curl);
 }
 
-function firebaseNotification($notificationData){
+function firebaseNotification($notificationData,$users){
 	GLOBAL $firebaseKey;
 	$data = array(
-		"registration_ids" => array(
-			"",
-		),
+		"registration_ids" => $users,
 		"notification" => array(
 			"body" => "{$notificationData["body"]}",
 			"title" => "{$notificationData["title"]}",
@@ -263,7 +261,7 @@ function firebaseNotification($notificationData){
 			"Content-Type: application/json"
 		),
 	));
-	echo json_encode($data);
+	echo $firebaseKey . " " . json_encode($data);
 	var_dump($response = curl_exec($curl));die();
 	curl_close($curl);
 	return json_decode($response, true);
