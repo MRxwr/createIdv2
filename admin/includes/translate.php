@@ -18,6 +18,7 @@ $settingsShippingMethod = $row["shippingMethod"];
 $headerButton = $row["headerButton"];
 $websiteColor = $row["websiteColor"];
 $defaultCountry = $row["country"];
+$firebaseKey = $row["firebaseKey"];
 $settingsLang = (isset($row["language"]) && $row["language"] == "0") ? "ENG" : "AR";
 
 if ( isset($_GET["lang"]) ){

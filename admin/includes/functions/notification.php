@@ -259,7 +259,7 @@ function firebaseNotification($notificationData){
 	CURLOPT_CUSTOMREQUEST => 'POST',
 	CURLOPT_POSTFIELDS => json_encode($data),
 	CURLOPT_HTTPHEADER => array(
-			"Authorization: key={$firebaseKey}",
+			"Authorization: {$firebaseKey}",
 			"Content-Type: application/json"
 		),
 	));
