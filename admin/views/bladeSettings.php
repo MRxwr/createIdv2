@@ -2,6 +2,7 @@
 if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
+    var_dump($_REQUEST);die();
     if (is_uploaded_file($_FILES['image']['tmp_name'])) {
         $_POST["logo"] = uploadImageBanner($_FILES['image']['tmp_name']);
     }else{
