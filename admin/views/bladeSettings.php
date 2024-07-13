@@ -37,8 +37,7 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
                 <label><?php echo direction("Title","العنوان") ?></label>
                 <input type="text" name="title" class="form-control" value="<?php echo $settings[0]["title"] ?>">
 			</div>
-<?php
-/*
+
 			<div class="col-md-3">
                 <label><?php echo direction("Og Description","تفاصيل الصفحة") ?></label>
                 <input type="text" name="OgDescription" class="form-control" value="<?php echo $settings[0]["OgDescription"] ?>">
@@ -73,7 +72,8 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
                 <label><?php echo direction("Firebase Key","المفتاح الخاص بالفيربيس") ?></label>
                 <input type="text" name="firebaseKey" class="form-control" value="<?php echo $settings[0]["firebaseKey"] ?>">
 			</div>
-
+            <?php
+/*
 			<div class="col-md-6">
                 <label><?php echo direction("Google Analytics","تحليلات جوجل") ?></label>
                 <textarea name="google" class="form-control" style="height:300px;width:100%"><?php echo $settings[0]["google"] ?></textarea>
