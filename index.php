@@ -2,6 +2,10 @@
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["account"]) && !empty($_GET["account"]) ){
+    if( !isset($_COOKIE["CID"]) || empty($_COOKIE["CID"]) ){
+        setcookie("CID",md5(rand(100000,999999)),time() + 600, "/");
+    }
+    
     if( $account = selectDBNew("users",[strtolower($_GET["account"])],"`url` LIKE ? AND `hidden` = '1' AND `status` = '0'","") ){ 
         $account = $account[0];
         if( $profiles = selectDB("profiles","`userId` = '{$account["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
@@ -52,7 +56,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
-                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button onclick={$link} type='button' class='{$profiles[$i]["btnColor"]} {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span>
+                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button id='{$link}' type='button' class='profile {$profiles[$i]["btnColor"]} {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span><span class='profileId' style='display:none' id='{$profiles[$i]["id"]}'></span>
                     </button>
                 </div>";
                 }
@@ -70,6 +74,37 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <script>
+    $(document).on("click",".profile",function(){
+        var link = $(this).attr("id");
+        var id = $(".profileId").attr("id");
+        var form = new FormData();
+
+        form.append("profileId", id);
+        form.append("account", "<?php echo $account["url"]; ?>");
+        form.append("referer", "<?php echo $_SERVER["HTTP_REFERER"] = ((isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) ? $_SERVER["HTTP_REFERER"] : ""); ?>");
+        form.append("CSCRT", "<?php echo $_COOKIE["CID"]; ?>");
+
+        var settings = {
+            "url": "requests/index.php?a=Click",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+
+        $.ajax(settings).done(function (response) {
+            window.open(link);
+        });
+    });
+
+    setInterval(function(){
+        location.reload();
+    }, 600000);
+    </script>
 </body>
 
 </html>
