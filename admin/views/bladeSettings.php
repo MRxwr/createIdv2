@@ -1,8 +1,8 @@
 <?php 
 if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 	unset($_POST["update"]);
-    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-        $_POST["logo"] = uploadImageBanner($_FILES['image']['tmp_name']);
+    if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+        $_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
     }
     if( updateDB('settings', $_POST, "`id` = '1'") ){
         header("LOCATION: ?v=Settings");die();
