@@ -56,7 +56,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
                     $link = "window.open('".str_replace(" ","",$url)."')";
                     $logo = ( isset($profiles[$i]["logo"]) && !empty($profiles[$i]["logo"])) ? "<img src='logos/{$profiles[$i]["logo"]}' style='height:25px;width:25px'>": $socialMedia[0]["icon"];
                     $text = ( isset($profiles[$i]["text"]) && !empty($profiles[$i]["text"]) ) ? $profiles[$i]["text"] : $profiles[$i]["account"] ;
-                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button id='{$link}' type='button' class='profile {$profiles[$i]["btnColor"]} {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span><span class='profileId' style='display:none'>{$profiles[$i]["id"]}</span>
+                    echo "<div style='padding-bottom: 30px; display: flex; justify-content: center;'><button id='{$link}' type='button' class='profile {$profiles[$i]["btnColor"]} {$shake}' style='width: 80%; padding-top: 10px; padding-bottom: 10px; font-weight: 600; user-select: auto; display: flex; align-items: center;'>{$logo}<span style='flex: 1; text-align: center;white-space: break-spaces;'>{$text}</span><span class='profileId' style='display:none' id='{$profiles[$i]["id"]}'></span>
                     </button>
                 </div>";
                 }
@@ -78,7 +78,8 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script>
     $(document).on("click",".profile",function(){
         var link = $(this).attr("id");
-        var id = $(this).find(".profileId").html();
+        console.log(link);return false;
+        var id = $(this).find(".profileId").attr("id");
         var form = new FormData();
 
         form.append("profileId", id);
