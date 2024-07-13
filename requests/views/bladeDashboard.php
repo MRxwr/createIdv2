@@ -6,7 +6,6 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
             if( $user = selectDB2("`logo`, `fullName`","users","`keepMeAlive` LIKE '{$token}'") ){
-                $profiles["user"] = $user[0];
                 if( $profiles = selectDB2("`id`, `smId`","profiles","`userId` = '{$user[0]["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
                     for( $i = 0; $i < sizeof($profiles); $i++ ){
                         $socialMedia = selectDB2("`title`, `icon`","socialMedia","`id` = '{$profiles[$i]["smId"]}'");
@@ -73,6 +72,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     }else{
                         $profiles["viewsPerYear"] = 0;
                     }
+                    $profiles["user"] = $user[0];
                 }else{
                     $profiles = [];
                 }
