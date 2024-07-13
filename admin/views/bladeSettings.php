@@ -9,11 +9,13 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
             $_POST["logo"] = "";
         }
 		if( updateDB('settings', $_POST, "`id` = '1'") ){
-			header("LOCATION: ?v=Settings");
+			header("LOCATION: ?v=Settings");die();
 		}else{
 		?>
 		<script>
 			alert("Could not process your request, Please try again.");
+            // refresh page after 2 seconds and go to this location
+            setTimeout(function(){window.location.href = '?v=Settings';}, 2000);
 		</script>
 		<?php
 		}
