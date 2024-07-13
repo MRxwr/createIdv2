@@ -216,7 +216,6 @@ function updateDB($table, $data, $where) {
     $stmt = $dbconnect->prepare($sql); 
     $values = array_values($data);
     $stmt->bind_param($params, ...$values);
-    var_dump($stmt->execute());die();
     if( isset($_GET["v"]) && !empty($_GET["v"]) ){
         $array = array(
             "userId" => $userID,
@@ -231,7 +230,7 @@ function updateDB($table, $data, $where) {
         return 1;
     } else {
         $error = array("msg" => "update table error");
-        return 0;
+        return outputError($error);
     }
 }
 

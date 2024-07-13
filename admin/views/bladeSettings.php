@@ -108,14 +108,13 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 
 			<div class="col-md-6">
                 <label><?php echo direction("Logo","الشعار") ?></label>
-                <input type="file" name="image" class="form-control">
+                <input type="file" name="logo" class="form-control">
 			</div>
 
 			<div class="col-md-6">
                 <img src="../logos/<?php echo $settings[0]["logo"] ?>" width="200px" height="200px">
 			</div>
 
-			
 			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
 			<input type="hidden" name="update" value="1">
