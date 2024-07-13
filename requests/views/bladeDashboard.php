@@ -44,6 +44,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                         }
                             */
                     } 
+                    /*
                     if( $clicksPerDay = selectDB("clicks", "DATE(`date`) = CURDATE() AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
                         $clicksPerDayCount = count($clicksPerDay);
                         $profiles["views"]["viewsPerDay"] = $clicksPerDayCount;
@@ -76,6 +77,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     }
                     $userInfo = selectDB2("`fullName`, `logo`","users", "`id` = '{$user[0]["id"]}'");
                     $profiles["userInfo"] = $userInfo[0];
+                    */
                 }else{
                     $profiles = [];
                 }
