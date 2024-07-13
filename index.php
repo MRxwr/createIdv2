@@ -122,7 +122,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
 
     setInterval(function(){
         location.reload();
-    }, 10000);
+    }, 600000);
     </script>
 </body>
 
