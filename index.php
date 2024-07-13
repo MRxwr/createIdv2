@@ -97,7 +97,8 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
         };
 
         $.ajax(settings).done(function (response) {
-            window.open(link);
+            console.log(response);
+            //window.open(link);
         });
     });
 
