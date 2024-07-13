@@ -40,6 +40,36 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                             $profiles[$i]["clicksPerYear"] = 0;
                         }
                     }
+                    if( $clicksPerDay = selectDB("clicks", "DATE(`date`) = CURDATE() AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
+                        $clicksPerDayCount = count($clicksPerDay);
+                        $profiles[$i]["viewsPerDay"] = $clicksPerDayCount;
+                    }else{
+                        $profiles[$i]["viewsPerDay"] = 0;
+                    }
+
+                    // Get clicks per week
+                    if( $clicksPerWeek = selectDB("clicks", "WEEK(`date`) = WEEK(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
+                        $clicksPerWeekCount = count($clicksPerWeek);
+                        $profiles[$i]["viewsPerWeek"] = $clicksPerWeekCount;
+                    }else{
+                        $profiles[$i]["viewsPerWeek"] = 0;
+                    }
+
+                    // Get clicks per month
+                    if( $clicksPerMonth = selectDB("clicks", "MONTH(`date`) = MONTH(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
+                        $clicksPerMonthCount = count($clicksPerMonth);
+                        $profiles[$i]["viewsPerMonth"] = $clicksPerMonthCount;
+                    }else{
+                        $profiles[$i]["viewsPerMonth"] = 0;
+                    }
+
+                    // Get clicks per year
+                    if( $clicksPerYear = selectDB("clicks", "YEAR(`date`) = YEAR(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
+                        $clicksPerYearCount = count($clicksPerYear);
+                        $profiles[$i]["viewsPerYear"] = $clicksPerYearCount;
+                    }else{
+                        $profiles[$i]["viewsPerYear"] = 0;
+                    }
                 }else{
                     $profiles = [];
                 }
