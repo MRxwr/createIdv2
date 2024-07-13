@@ -37,7 +37,8 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
                 <label><?php echo direction("Title","العنوان") ?></label>
                 <input type="text" name="title" class="form-control" value="<?php echo $settings[0]["title"] ?>">
 			</div>
-
+<?php
+/*
 			<div class="col-md-3">
                 <label><?php echo direction("Og Description","تفاصيل الصفحة") ?></label>
                 <input type="text" name="OgDescription" class="form-control" value="<?php echo $settings[0]["OgDescription"] ?>">
@@ -111,7 +112,8 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 			<div class="col-md-6">
                 <img src="../logos/<?php echo $settings[0]["logo"] ?>" width="200px" height="200px">
 			</div>
-
+*/
+?>
 			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
 			<input type="hidden" name="update" value="1">
