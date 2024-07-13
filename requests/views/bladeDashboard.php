@@ -9,7 +9,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 if( $profiles = selectDB2("`id`, `smId`","profiles","`userId` = '{$user[0]["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
                     for( $i = 0; $i < sizeof($profiles); $i++ ){
                         $socialMedia = selectDB2("`title`, `icon`","socialMedia","`id` = '{$profiles[$i]["smId"]}'");
-                        $profiles["profiles"][$i]["socialMedia"] = $socialMedia[0];
+                        //$profiles["profiles"][$i]["socialMedia"] = $socialMedia[0];
                         // Get clicks per day
                         if( $clicksPerDay = selectDB("clicks", "DATE(`date`) = CURDATE() AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
                             $clicksPerDayCount = count($clicksPerDay);
