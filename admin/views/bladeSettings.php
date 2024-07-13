@@ -112,7 +112,7 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 			</div>
 
 			<div class="col-md-6">
-                <img src="../logos/<?php echo $settings[0]["image"] ?>" width="200px" height="200px">
+                <img src="../logos/<?php echo $settings[0]["logo"] ?>" width="200px" height="200px">
 			</div>
 
 			
