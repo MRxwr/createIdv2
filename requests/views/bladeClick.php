@@ -21,6 +21,10 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
         }
     }
 }else{
+    $profile = selectDBNew("profiles",[$_POST["profileId"]],"`id` = ?","");
+    $socialMedia = selectDB("socialMedia","`id` = '{$profile[0]["smId"]}'");
+    $url = ( isset($profile[0]["link"]) && !empty($profile[0]["link"]) ) ? $profile[0]["link"] : "{$socialMedia[0]["link"]}{$profile[0]["account"]}" ;
+    $link = str_replace(" ","",$url);
     return $link;die();
 }
 ?>
