@@ -44,35 +44,35 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                     }
                     if( $clicksPerDay = selectDB("clicks", "DATE(`date`) = CURDATE() AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
                         $clicksPerDayCount = count($clicksPerDay);
-                        $profiles["viewsPerDay"] = $clicksPerDayCount;
+                        $profiles[]["viewsPerDay"] = $clicksPerDayCount;
                     }else{
-                        $profiles["viewsPerDay"] = 0;
+                        $profiles[]["viewsPerDay"] = 0;
                     }
 
                     // Get clicks per week
                     if( $clicksPerWeek = selectDB("clicks", "WEEK(`date`) = WEEK(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
                         $clicksPerWeekCount = count($clicksPerWeek);
-                        $profiles["viewsPerWeek"] = $clicksPerWeekCount;
+                        $profiles[]["viewsPerWeek"] = $clicksPerWeekCount;
                     }else{
-                        $profiles["viewsPerWeek"] = 0;
+                        $profiles[]["viewsPerWeek"] = 0;
                     }
 
                     // Get clicks per month
                     if( $clicksPerMonth = selectDB("clicks", "MONTH(`date`) = MONTH(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
                         $clicksPerMonthCount = count($clicksPerMonth);
-                        $profiles["viewsPerMonth"] = $clicksPerMonthCount;
+                        $profiles[]["viewsPerMonth"] = $clicksPerMonthCount;
                     }else{
-                        $profiles["viewsPerMonth"] = 0;
+                        $profiles[]["viewsPerMonth"] = 0;
                     }
 
                     // Get clicks per year
                     if( $clicksPerYear = selectDB("clicks", "YEAR(`date`) = YEAR(CURDATE()) AND `profileId` = '0' AND `userId` = '{$user[0]["id"]}'") ){
                         $clicksPerYearCount = count($clicksPerYear);
-                        $profiles["viewsPerYear"] = $clicksPerYearCount;
+                        $profiles[]["viewsPerYear"] = $clicksPerYearCount;
                     }else{
-                        $profiles["viewsPerYear"] = 0;
+                        $profiles[]["viewsPerYear"] = 0;
                     }
-                    $profiles["user"] = $user[0];
+                    $profiles[]["user"] = $user[0];
                 }else{
                     $profiles = [];
                 }
