@@ -100,6 +100,26 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
         });
     });
 
+    // on page load run the function
+    $(document).ready(function(){
+        var form = new FormData();
+        form.append("profileId", 0);
+        form.append("account", "<?php echo $account["url"]; ?>");
+        form.append("referer", "<?php echo $_SERVER["HTTP_REFERER"] = ((isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) ? $_SERVER["HTTP_REFERER"] : ""); ?>");
+        form.append("CSCRT", "<?php echo $_COOKIE["CID"]; ?>");
+        var settings = {
+            "url": "requests/index.php?a=Click",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+        $.ajax(settings).done(function (response) {
+        });
+    });
+
     setInterval(function(){
         location.reload();
     }, 600000);
