@@ -230,7 +230,7 @@ function updateDB($table, $data, $where) {
         return 1;
     } else {
         $error = array("msg" => "update table error");
-        return outputError($error);
+        return 0;
     }
 }
 
