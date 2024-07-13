@@ -12,6 +12,7 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
             "userAgent" => $_SERVER["HTTP_USER_AGENT"],
             "secret" => $_POST["CSCRT"]
         );
+        var_dump($dataInsert);die();
         if ( insertDB("clicks",$dataInsert) ){
             return 1;die();
         }
