@@ -3,10 +3,7 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 	unset($_POST["update"]);
     if (is_uploaded_file($_FILES['image']['tmp_name'])) {
         $_POST["logo"] = uploadImageBanner($_FILES['image']['tmp_name']);
-    }else{
-        $_POST["logo"] = "";
     }
-    var_dump(updateDB('settings', $_POST, "`id` = '1'"));die();
     if( updateDB('settings', $_POST, "`id` = '1'") ){
         header("LOCATION: ?v=Settings");die();
     }else{
