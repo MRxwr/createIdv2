@@ -1,5 +1,6 @@
 <?php 
 if( isset($_POST["update"]) && !empty($_POST["update"]) ){
+    var_dump($_POST);die();
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
