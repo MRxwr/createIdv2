@@ -85,22 +85,22 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy","سياسة الخصوصية") ?></label>
-                <textarea name="enPolicy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="enPolicy" class="tinymce"><?php echo $settings[0]["enPolicy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy Arabic","سياسة الخصوصية العربية") ?></label>
-                <textarea name="arPolicy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="arPolicy" class="tinymce"><?php echo $settings[0]["arPolicy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Terms & Conditions","الشروط والاحكام") ?></label>
-                <textarea name="enTerms" class="tinymce"><?php echo $settings[0]["terms"] ?></textarea>
+                <textarea name="enTerms" class="tinymce"><?php echo $settings[0]["enTerms"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Terms & Conditions Arabic","الشروط والاحكام العربية") ?></label>
-                <textarea name="arTerms" class="tinymce"><?php echo $settings[0]["terms"] ?></textarea>
+                <textarea name="arTerms" class="tinymce"><?php echo $settings[0]["arTerms"] ?></textarea>
 			</div>
 
 			<div class="col-md-6">
