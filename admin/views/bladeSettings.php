@@ -78,12 +78,12 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 
 			<div class="col-md-6">
                 <label><?php echo direction("Google Analytics","تحليلات جوجل") ?></label>
-                <textarea name="google" class="form-control" style="height:300px;width:auto" required><?php echo $settings[0]["google"] ?></textarea>
+                <textarea name="google" class="form-control" style="height:300px;width:100%" required><?php echo $settings[0]["google"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Pixil Analytics","تحليلات بكسيل") ?></label>
-                <textarea name="pixil" class="form-control" style="height:300px;width:auto" required><?php echo $settings[0]["pixil"] ?></textarea>
+                <textarea name="pixil" class="form-control" style="height:300px;width:100%" required><?php echo $settings[0]["pixil"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
