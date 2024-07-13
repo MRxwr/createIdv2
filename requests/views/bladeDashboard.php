@@ -9,7 +9,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                 if( $profiles = selectDB("profiles","`userId` = '{$user[0]["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
                     for( $i = 0; $i < sizeof($profiles); $i++ ){
                         // Get clicks per day
-                        if( $clicksPerDay = selectDB("clicks", "DATE(`timestamp`) = CURDATE() AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
+                        if( $clicksPerDay = selectDB("clicks", "DATE(`date`) = CURDATE() AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
                             $clicksPerDayCount = count($clicksPerDay);
                             $profiles[$i]["clicksPerDay"] = $clicksPerDayCount;
                         }else{
@@ -17,7 +17,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                         }
 
                         // Get clicks per week
-                        if( $clicksPerWeek = selectDB("clicks", "WEEK(`timestamp`) = WEEK(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
+                        if( $clicksPerWeek = selectDB("clicks", "WEEK(`date`) = WEEK(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
                             $clicksPerWeekCount = count($clicksPerWeek);
                             $profiles[$i]["clicksPerWeek"] = $clicksPerWeekCount;
                         }else{
@@ -25,7 +25,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                         }
 
                         // Get clicks per month
-                        if( $clicksPerMonth = selectDB("clicks", "MONTH(`timestamp`) = MONTH(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
+                        if( $clicksPerMonth = selectDB("clicks", "MONTH(`date`) = MONTH(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
                             $clicksPerMonthCount = count($clicksPerMonth);
                             $profiles[$i]["clicksPerMonth"] = $clicksPerMonthCount;
                         }else{
@@ -33,7 +33,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
                         }
 
                         // Get clicks per year
-                        if( $clicksPerYear = selectDB("clicks", "YEAR(`timestamp`) = YEAR(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
+                        if( $clicksPerYear = selectDB("clicks", "YEAR(`date`) = YEAR(CURDATE()) AND `profileId` = '{$profiles[$i]["id"]}' AND `userId` = '{$user[0]["id"]}'") ){
                             $clicksPerYearCount = count($clicksPerYear);
                             $profiles[$i]["clicksPerYear"] = $clicksPerYearCount;
                         }else{
