@@ -6,7 +6,6 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             echo outputError(array("msg" => "Token Required"));die();
         }else{
             if( $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","") ){
-                $profiles
                 if( $profiles = selectDB2("`id`, `smId`","profiles","`userId` = '{$user[0]["id"]}' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
                     for( $i = 0; $i < sizeof($profiles); $i++ ){
                         $socialMedia = selectDB2("`title`, `icon`","socialMedia","`id` = '{$profiles[$i]["smId"]}'");
