@@ -14,7 +14,6 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
 }else{
     header("LOCATION: /");die();
 }
-print_r($_SERVER);
 ?>
 
 <!DOCTYPE html>
