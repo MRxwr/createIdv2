@@ -1,7 +1,7 @@
 <?php
 if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_POST["CSCRT"] ){
     $profile = selectDBNew("profiles",[$_POST["profileId"]],"`id` = ?","");
-    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
+    $url = ( isset($profiles[0]["link"]) && !empty($profiles[0]["link"]) ) ? $profiles[0]["link"] : "{$socialMedia[0]["link"]}{$profiles[0]["account"]}" ;
     $link = str_replace(" ","",$url);
     if ( $click = selectDBNew("clicks",[$_POST["profileId"],$_POST["CSCRT"]],"`profileId` = ? AND `secret` = ?","") ){
         echo $link;die();
