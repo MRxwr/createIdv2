@@ -1,26 +1,23 @@
 <?php 
 if( isset($_POST["update"]) && !empty($_POST["update"]) ){
-    var_dump($_POST);die();
 	$id = $_POST["update"];
 	unset($_POST["update"]);
-	if ( $id == 0 ){
-		if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-            $_POST["logo"] = uploadImageBanner($_FILES['image']['tmp_name']);
-		}else{
-            $_POST["logo"] = "";
-        }
-		if( updateDB('settings', $_POST, "`id` = '1'") ){
-			header("LOCATION: ?v=Settings");die();
-		}else{
-		?>
-		<script>
-			alert("Could not process your request, Please try again.");
-            // refresh page after 2 seconds and go to this location
-            setTimeout(function(){window.location.href = '?v=Settings';}, 2000);
-		</script>
-		<?php
-		}
-	}
+    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+        $_POST["logo"] = uploadImageBanner($_FILES['image']['tmp_name']);
+    }else{
+        $_POST["logo"] = "";
+    }
+    if( updateDB('settings', $_POST, "`id` = '1'") ){
+        header("LOCATION: ?v=Settings");die();
+    }else{
+    ?>
+    <script>
+        alert("Could not process your request, Please try again.");
+        // refresh page after 2 seconds and go to this location
+        setTimeout(function(){window.location.href = '?v=Settings';}, 2000);
+    </script>
+    <?php
+    }
 }else{
     $settings = selectDB('settings', "`id` = '1' ");
 }
