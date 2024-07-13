@@ -77,8 +77,6 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(document).on("click",".profile",function(){
-        var link = $(this).attr("id");
-        console.log(link);return false;
         var id = $(this).find(".profileId").attr("id");
         var form = new FormData();
 
@@ -98,7 +96,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
         };
 
         $.ajax(settings).done(function (response) {
-            window.open(link);
+            window.open(response);
         });
     });
 

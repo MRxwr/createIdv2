@@ -1,7 +1,10 @@
 <?php
 if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_POST["CSCRT"] ){
+    $profile = selectDBNew("profiles",[$_POST["profileId"]],"`id` = ?","");
+    $url = ( isset($profiles[$i]["link"]) && !empty($profiles[$i]["link"]) ) ? $profiles[$i]["link"] : "{$socialMedia[0]["link"]}{$profiles[$i]["account"]}" ;
+    $link = str_replace(" ","",$url);
     if ( $click = selectDBNew("clicks",[$_POST["profileId"],$_POST["CSCRT"]],"`profileId` = ? AND `secret` = ?","") ){
-        return 1;die();
+        return $link;die();
     }else{
         $account = selectDBNew("users",[$_POST["account"]],"`url` LIKE ?","");
         $dataInsert = array(
@@ -13,10 +16,10 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
             "secret" => $_POST["CSCRT"]
         );
         if ( insertDB("clicks",$dataInsert) ){
-            return 1;die();
+            return $link;die();
         }
     }
 }else{
-    return 1;die();
+    return $link;die();
 }
 ?>
