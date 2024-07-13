@@ -5,7 +5,7 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
     $url = ( isset($profile[0]["link"]) && !empty($profile[0]["link"]) ) ? $profile[0]["link"] : "{$socialMedia[0]["link"]}{$profile[0]["account"]}" ;
     $link = str_replace(" ","",$url);
     if ( $click = selectDBNew("clicks",[$_POST["profileId"],$_POST["CSCRT"]],"`profileId` = ? AND `secret` = ?","") ){
-        return $link;die();
+        echo $link;die();
     }else{
         $account = selectDBNew("users",[$_POST["account"]],"`url` LIKE ?","");
         $dataInsert = array(
@@ -17,7 +17,7 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
             "secret" => $_POST["CSCRT"]
         );
         if ( insertDB("clicks",$dataInsert) ){
-            return $link;die();
+            echo $link;die();
         }
     }
 }else{
@@ -25,6 +25,6 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
     $socialMedia = selectDB("socialMedia","`id` = '{$profile[0]["smId"]}'");
     $url = ( isset($profile[0]["link"]) && !empty($profile[0]["link"]) ) ? $profile[0]["link"] : "{$socialMedia[0]["link"]}{$profile[0]["account"]}" ;
     $link = str_replace(" ","",$url);
-    return $link;die();
+    echo $link;die();
 }
 ?>
