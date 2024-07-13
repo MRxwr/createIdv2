@@ -3,7 +3,7 @@ if( isset($_COOKIE["CID"]) && !empty($_COOKIE["CID"]) && $_COOKIE["CID"] == $_PO
     if ( $click = selectDBNew("clicks",[$_POST["profileId"],$_POST["CSCRT"]],"`profileId` = ? AND `secret` = ?","") ){
         return 1;die();
     }else{
-        $account = selectDBNew("users",[$_POST["account"]],"`url` LIKE ? AND `hidden` = '1' AND `status` = '0'","");
+        $account = selectDBNew("users",[$_POST["account"]],"`url` LIKE ?","");
         $dataInsert = array(
             "profileId" => $_POST["profileId"],
             "userId" => $account[0]["userId"],
