@@ -78,7 +78,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script>
     $(document).on("click",".profile",function(){
         var link = $(this).attr("id");
-        var id = $(".profileId").attr("id");
+        var id = $(this).find(".profileId").attr("id");
         var form = new FormData();
 
         form.append("profileId", id);
