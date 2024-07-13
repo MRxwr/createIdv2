@@ -72,8 +72,7 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
                 <label><?php echo direction("Firebase Key","المفتاح الخاص بالفيربيس") ?></label>
                 <input type="text" name="firebaseKey" class="form-control" value="<?php echo $settings[0]["firebaseKey"] ?>">
 			</div>
-            <?php
-/*
+
 			<div class="col-md-6">
                 <label><?php echo direction("Google Analytics","تحليلات جوجل") ?></label>
                 <textarea name="google" class="form-control" style="height:300px;width:100%"><?php echo $settings[0]["google"] ?></textarea>
@@ -86,12 +85,12 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy","سياسة الخصوصية") ?></label>
-                <textarea name="enPrivacy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="enPolicy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy Arabic","سياسة الخصوصية العربية") ?></label>
-                <textarea name="arPrivacy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="arPolicy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
@@ -112,8 +111,7 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 			<div class="col-md-6">
                 <img src="../logos/<?php echo $settings[0]["logo"] ?>" width="200px" height="200px">
 			</div>
-*/
-?>
+            
 			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
 			<input type="hidden" name="update" value="1">
