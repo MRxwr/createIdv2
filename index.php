@@ -3,7 +3,7 @@ require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     if( !isset($_COOKIE["CID"]) || empty($_COOKIE["CID"]) ){
-        setcookie("CID",md5(rand(100000,999999)),time() + 600, "/", "SameSite=None", true);
+        setcookie("CID",md5(rand(100000,999999)),time() + 600, "/", "SameSite=None");
     }
     
     if( $account = selectDBNew("users",[strtolower($_GET["account"])],"`url` LIKE ? AND `hidden` = '1' AND `status` = '0'","") ){ 
