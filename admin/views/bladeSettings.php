@@ -36,79 +36,79 @@ if( isset($_POST["update"]) && !empty($_POST["update"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
             
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Title","العنوان") ?></label>
-                <input type="text" name="title" class="form-control" value="<?php echo $settings[0]["title"] ?>" required>
+                <input type="text" name="title" class="form-control" value="<?php echo $settings[0]["title"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Og Description","تفاصيل الصفحة") ?></label>
-                <input type="text" name="OgDescription" class="form-control" value="<?php echo $settings[0]["OgDescription"] ?>" required>
+                <input type="text" name="OgDescription" class="form-control" value="<?php echo $settings[0]["OgDescription"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Email","البريد الالكتروني") ?></label>
-                <input type="text" name="email" class="form-control" value="<?php echo $settings[0]["email"] ?>" required>
+                <input type="text" name="email" class="form-control" value="<?php echo $settings[0]["email"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Cookie","الكوكي") ?></label>
-                <input type="text" name="cookie" class="form-control" value="<?php echo $settings[0]["cookie"] ?>" required>
+                <input type="text" name="cookie" class="form-control" value="<?php echo $settings[0]["cookie"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Website","الموقع") ?></label>
-                <input type="text" name="website" class="form-control" value="<?php echo $settings[0]["website"] ?>" required>
+                <input type="text" name="website" class="form-control" value="<?php echo $settings[0]["website"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Payment API Key","المفتاح الخاص بالدفع") ?></label>
-                <input type="text" name="PaymentAPIKey" class="form-control" value="<?php echo $settings[0]["PaymentAPIKey"] ?>" required>
+                <input type="text" name="PaymentAPIKey" class="form-control" value="<?php echo $settings[0]["PaymentAPIKey"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Version","الاصدار") ?></label>
-                <input type="text" name="version" class="form-control" value="<?php echo $settings[0]["version"] ?>" required>
+                <input type="text" name="version" class="form-control" value="<?php echo $settings[0]["version"] ?>">
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
                 <label><?php echo direction("Firebase Key","المفتاح الخاص بالفيربيس") ?></label>
-                <input type="text" name="firebaseKey" class="form-control" value="<?php echo $settings[0]["firebaseKey"] ?>" required>
+                <input type="text" name="firebaseKey" class="form-control" value="<?php echo $settings[0]["firebaseKey"] ?>">
 			</div>
 
 			<div class="col-md-6">
                 <label><?php echo direction("Google Analytics","تحليلات جوجل") ?></label>
-                <textarea name="google" class="form-control" style="height:300px;width:100%" required><?php echo $settings[0]["google"] ?></textarea>
+                <textarea name="google" class="form-control" style="height:300px;width:100%"><?php echo $settings[0]["google"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Pixil Analytics","تحليلات بكسيل") ?></label>
-                <textarea name="pixil" class="form-control" style="height:300px;width:100%" required><?php echo $settings[0]["pixil"] ?></textarea>
+                <textarea name="pixil" class="form-control" style="height:300px;width:100%"><?php echo $settings[0]["pixil"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy","سياسة الخصوصية") ?></label>
-                <textarea name="enPrivacy" class="tinymce" required><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="enPrivacy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Privacy Policy Arabic","سياسة الخصوصية العربية") ?></label>
-                <textarea name="arPrivacy" class="tinymce" required><?php echo $settings[0]["privacy"] ?></textarea>
+                <textarea name="arPrivacy" class="tinymce"><?php echo $settings[0]["privacy"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Terms & Conditions","الشروط والاحكام") ?></label>
-                <textarea name="enTerms" class="tinymce" required><?php echo $settings[0]["terms"] ?></textarea>
+                <textarea name="enTerms" class="tinymce"><?php echo $settings[0]["terms"] ?></textarea>
 			</div>
 
             <div class="col-md-6">
                 <label><?php echo direction("Terms & Conditions Arabic","الشروط والاحكام العربية") ?></label>
-                <textarea name="arTerms" class="tinymce" required><?php echo $settings[0]["terms"] ?></textarea>
+                <textarea name="arTerms" class="tinymce"><?php echo $settings[0]["terms"] ?></textarea>
 			</div>
 
 			<div class="col-md-6">
                 <label><?php echo direction("Logo","الشعار") ?></label>
-                <input type="file" name="image" class="form-control" required>
+                <input type="file" name="image" class="form-control">
 			</div>
 
 			<div class="col-md-6">
