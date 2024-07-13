@@ -212,7 +212,7 @@ function updateDB($table, $data, $where) {
         }
         $params .= "s";
     }
-    echo $sql .= " WHERE " . $where;
+    $sql .= " WHERE " . $where;
     $stmt = $dbconnect->prepare($sql); 
     $values = array_values($data);
     $stmt->bind_param($params, ...$values);
@@ -226,6 +226,7 @@ function updateDB($table, $data, $where) {
         );
         LogsHistory($array);
     }
+    var_dump($stmt->execute());
     if ($stmt->execute()) {
         return 1;
     } else {
