@@ -179,7 +179,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="200">
                     <div class="example-page">
-                        <img src="/api/placeholder/400/300" alt="Creator Profile" class="img-fluid">
+                        <img src="logos/MVcoll0.png" alt="Creator Profile" class="img-fluid">
                         <div class="p-3">
                             <h4>Creator Profile</h4>
                             <p>Perfect for artists and content creators to showcase their work and social media.</p>
@@ -188,7 +188,7 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="400">
                     <div class="example-page">
-                        <img src="/api/placeholder/400/300" alt="Business Card" class="img-fluid">
+                        <img src="logos/MVcoll0.png" alt="Business Card" class="img-fluid">
                         <div class="p-3">
                             <h4>Digital Business Card</h4>
                             <p>A modern way to share your professional information and portfolio.</p>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="600">
                     <div class="example-page">
-                        <img src="/api/placeholder/400/300" alt="Event Page" class="img-fluid">
+                        <img src="logos/MVcoll0.png" alt="Event Page" class="img-fluid">
                         <div class="p-3">
                             <h4>Event Page</h4>
                             <p>Organize all your event details and ticket links in one convenient location.</p>
