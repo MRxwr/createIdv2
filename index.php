@@ -74,8 +74,11 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    $(document).on("click", ".profile", function() {
-        var id = $(this).find(".profileId").attr("id");
+    $(document).on("click", ".profile", function(e) {
+        e.preventDefault(); // Prevent default action
+
+        var $this = $(this);
+        var id = $this.find(".profileId").attr("id");
         var form = new FormData();
         form.append("profileId", id);
         form.append("account", "<?php echo $account['url']; ?>");
@@ -91,7 +94,11 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
             contentType: false,
             data: form,
             success: function(response) {
-                window.open(response);
+                // Instead of window.open, set the window location
+                window.location.href = response;
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed:", status, error);
             }
         });
     });
