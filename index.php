@@ -74,27 +74,25 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    $(document).on("click",".profile",function(){
+    $(document).on("click", ".profile", function() {
         var id = $(this).find(".profileId").attr("id");
         var form = new FormData();
-
         form.append("profileId", id);
-        form.append("account", "<?php echo $account["url"]; ?>");
-        form.append("referer", "<?php echo $_SERVER["HTTP_REFERER"] = ((isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) ? $_SERVER["HTTP_REFERER"] : ""); ?>");
-        form.append("CSCRT", "<?php echo $_COOKIE["CID"]; ?>");
+        form.append("account", "<?php echo $account['url']; ?>");
+        form.append("referer", "<?php echo $_SERVER['HTTP_REFERER'] = ((isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : ''); ?>");
+        form.append("CSCRT", "<?php echo $_COOKIE['CID']; ?>");
 
-        var settings = {
-            "url": "requests/index.php?a=Click",
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
-
-        $.ajax(settings).done(function (response) {
-            window.open(response);
+        $.ajax({
+            url: "requests/index.php?a=Click",
+            method: "POST",
+            timeout: 0,
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: form,
+            success: function(response) {
+                window.open(response);
+            }
         });
     });
 
