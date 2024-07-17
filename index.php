@@ -104,22 +104,31 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     });
 
     // on page load run the function
-    $(document).ready(function(){
+    $(document).ready(function(e){
+        e.preventDefault(); // Prevent default action
+
+        var $this = $(this);
         var form = new FormData();
         form.append("profileId", 0);
-        form.append("account", "<?php echo $account["url"]; ?>");
-        form.append("referer", "<?php echo $_SERVER["HTTP_REFERER"] = ((isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) ? $_SERVER["HTTP_REFERER"] : ""); ?>");
-        form.append("CSCRT", "<?php echo $_COOKIE["CID"]; ?>");
-        var settings = {
-            "url": "requests/index.php?a=Click",
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
-        $.ajax(settings).done(function (response) {
+        form.append("account", "<?php echo $account['url']; ?>");
+        form.append("referer", "<?php echo $_SERVER['HTTP_REFERER'] = ((isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : ''); ?>");
+        form.append("CSCRT", "<?php echo $_COOKIE['CID']; ?>");
+
+        $.ajax({
+            url: "requests/index.php?a=Click",
+            method: "POST",
+            timeout: 0,
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: form,
+            success: function(response) {
+                // Instead of window.open, set the window location
+                window.location.href = response;
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed:", status, error);
+            }
         });
     });
 
