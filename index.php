@@ -96,8 +96,8 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
             success: function(response) {
                 // Instead of window.open, set the window location
                 // open url in new tab
-                window.open(response);
-                //window.location.href = response;
+                //window.open(response);
+                window.location.href = response;
             },
             error: function(xhr, status, error) {
                 console.error("AJAX request failed:", status, error);
