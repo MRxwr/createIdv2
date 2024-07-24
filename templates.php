@@ -46,7 +46,7 @@
             padding: 2rem;
             overflow-y: auto;
             height: 100vh;
-            max-width: 1200px;
+            max-width: 100% /* 1200px */;
             margin: 0 auto;
         }
 
@@ -117,7 +117,7 @@
             background-color: white;
             padding: 2rem;
             border-radius: 10px;
-            max-width: 100%;
+            max-width: 80%;
             max-height: 80%;
             overflow-y: auto;
         }
