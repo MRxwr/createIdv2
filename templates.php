@@ -117,7 +117,7 @@
             background-color: white;
             padding: 2rem;
             border-radius: 10px;
-            max-width: 80%;
+            max-width: 100%;
             max-height: 80%;
             overflow-y: auto;
         }
@@ -127,7 +127,7 @@
                 display: none !important;
             }
             .content-wrapper {
-                padding: 0.5rem;
+                padding: 1rem;
             }
         }
     </style>
@@ -196,7 +196,7 @@
 
         function createTemplateCard(template) {
             return `
-                <div class="col-md-4 mb-4 template-item ${template.category}">
+                <div class="col-md-3 mb-3 template-item ${template.category}">
                     <div class="template-card" onclick="showPopup('${template.name}', '${template.image}')">
                         <img src="${template.image}" alt="${template.name}" class="template-image w-100">
                         <div class="p-3">
