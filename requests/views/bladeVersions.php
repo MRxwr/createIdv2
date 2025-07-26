@@ -1,6 +1,6 @@
 <?php 
 if( isset($_GET["action"]) && !empty($_GET["action"]) ){
-    if( $_GET["action"] == "update" ){
+    if( $_GET["action"] == "Update" ){
         if( !isset($_POST["ios"]) || empty($_POST["ios"]) ){
             $error["msg"] = "Please enter ios version number";
             echo outputError($error);die();
@@ -18,7 +18,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
             $response["versions"] = $versions[0];
             echo outputData($response);
         }
-    }elseif( $_GET["action"] == "list" ){
+    }elseif( $_GET["action"] == "List" ){
         if( $versions = selectDB2("`ios`,`android`","versions","`id` = '1'" ) ){
             $response["versions"] = $versions[0];
             echo outputData($response);
