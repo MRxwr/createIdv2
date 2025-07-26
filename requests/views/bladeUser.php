@@ -169,7 +169,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }elseif( $url = selectDBNew("users",[$_POST["url"]],"`url` LIKE ?","") ){
             echo outputError(array("msg" => "Page URL Already Exist"));die();
         }
-        $_POST["status"] = 1;
+        $_POST["hidden"] = 1;
         if( insertDB("users",$_POST) ){
             $user = selectDBNew("users",[$_POST["email"]],"`email` LIKE ?","");
             $token = password_hash(generateRandomString(), PASSWORD_BCRYPT);
