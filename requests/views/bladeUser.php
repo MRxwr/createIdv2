@@ -157,6 +157,8 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }
         if( !isset($_POST["password"]) || empty($_POST["password"]) ){
             echo outputError(array("msg" => "Password Required"));die();
+        }else{
+            $_POST["password"] = sha1($_POST["password"]);
         }
         if( !isset($_POST["fullName"]) || empty($_POST["fullName"]) ){
             echo outputError(array("msg" => "Page name Required"));die();

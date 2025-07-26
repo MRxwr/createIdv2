@@ -23,6 +23,7 @@ if( isset($_GET["action"]) && !empty($_GET["action"]) ){
         }else{
             $user = selectDBNew("users",[$token],"`keepMeAlive` LIKE ?","");
             $_POST["userId"] = $user[0]["id"];
+            $_POST["hidden"] = 1;
             if( insertDB("profiles",$_POST) ){
                 echo outputData(array("msg" => "Profile Added Successfully"));die();
             }else{
