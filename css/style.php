@@ -4,7 +4,6 @@ $accountColors = [$account["fourColors1"],$account["fourColors2"],$account["four
 for( $i = 0; $i < sizeof($accountColors); $i++ ){
 	$accountColors[$i] = ( isset($accountColors[$i]) && !empty($accountColors[$i]) ) ? $accountColors[$i] : $mainColors[$i] ;
 }
-var_dump($account);
 if( $account["bgType"] == 1 ){
 	$backgroundCSS = "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});background-size: 400% 400%;";
 }elseif($account["bgType"] == 2 ){
