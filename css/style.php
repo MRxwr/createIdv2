@@ -44,13 +44,18 @@ if( !empty($baseColor) && preg_match('/^#?[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $b
 ?>
 <style>
 body {
-	width: 100wh;
-	height: 90vh;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	color: <?php echo $textColor; ?>;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
 	animation: Gradient 15s ease infinite;
 	<?php echo $backgroundCSS; ?>
+}
+
+.page-content {
+	flex: 1 0 auto;
 }
 
 @-webkit-keyframes Gradient {

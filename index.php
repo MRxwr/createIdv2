@@ -34,6 +34,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
 </head>
 
 <body>
+    <div class="page-content">
     <div class="container">
     <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
@@ -64,8 +65,10 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     </div>
     </div>
 
+    </div>
+
         <div class="text-center pt-5 pb-5 w-100">
-            <a href="https://www.createkuwait.com/" class="btn btn-dark" style="/*color: #34312f;*/" target="_blank">Made with <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:25px;width:25px"><path fill="#ff0000" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg> In Create co.</a>
+            <a href="https://www.createkuwait.com/" class="btn btn-dark" target="_blank">Made with <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height:25px;width:25px"><path fill="#ff0000" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg> In Create co.</a>
         </div>
 
 
