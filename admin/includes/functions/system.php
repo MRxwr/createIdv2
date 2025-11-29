@@ -94,10 +94,10 @@ function updateItemQuantity($data){
 	}
 }
 
-function uploadImage($imageLocation){
+function uploadImageFreeImageHost($imageLocation){
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'https://api.imgur.com/3/upload',
+	  CURLOPT_URL => 'https://api.imgbb.com/1/upload?expiration=600&key=d4aba98558417ca912f2669f469950c7',
 	  CURLOPT_RETURNTRANSFER => true,
 	  CURLOPT_ENCODING => '',
 	  CURLOPT_MAXREDIRS => 10,
@@ -106,29 +106,62 @@ function uploadImage($imageLocation){
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	  CURLOPT_CUSTOMREQUEST => 'POST',
 	  CURLOPT_POSTFIELDS => array('image'=> new CURLFILE($imageLocation)),
-	  CURLOPT_HTTPHEADER => array(
-		'Authorization: Client-ID 386563124e58e6c'
-	  ),
 	));
 	$response = json_decode(curl_exec($curl),true);
 	curl_close($curl);
 	if( isset($response["success"]) && $response["success"] == true ){
-		$imageSizes = ["","b","m"];
-		for( $i = 0; $i < sizeof($imageSizes); $i++ ){
-			// Your file
-			$file = $response["data"]["link"];
-			$newFile = str_lreplace(".","{$imageSizes[$i]}.",$file);
-			//get File Name
-			$fileTitle = str_replace("https://i.imgur.com/","",$newFile);
-			$fileTitle = str_replace("{$imageSizes[$i]}.",".",$fileTitle);
-			// Open the file to get existing content
-			$data = file_get_contents($newFile);
-			// New file
-			$new = "../../../logos/{$imageSizes[$i]}".$fileTitle;
-			// Write the contents back to a new file
-			file_put_contents($new, $data);
-		}
-		return $fileTitle; 
+		file_put_contents("../../../logos/{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["image"]["url"]));
+		file_put_contents("../../../logos/m{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["thumb"]["url"]));
+		file_put_contents("../../../logos/b{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["thumb"]["url"]));
+		return "{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}"; 
+	}else{
+		return "";
+	}
+}
+
+function uploadImageBannerFreeImageHost($imageLocation){
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => 'https://api.imgbb.com/1/upload?expiration=600&key=d4aba98558417ca912f2669f469950c7',
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => '',
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => 'POST',
+	  CURLOPT_POSTFIELDS => array('image'=> new CURLFILE($imageLocation)),
+	));
+	$response = json_decode(curl_exec($curl),true);
+	curl_close($curl);
+	if( isset($response["success"]) && $response["success"] == true ){
+		file_put_contents("../logos/{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["image"]["url"]));
+		return "{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}"; 
+	}else{
+		return "";
+	}
+}
+
+function uploadImage($imageLocation){
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => 'https://api.imgbb.com/1/upload?expiration=600&key=d4aba98558417ca912f2669f469950c7',
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => '',
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => 'POST',
+	  CURLOPT_POSTFIELDS => array('image'=> new CURLFILE($imageLocation)),
+	));
+	$response = json_decode(curl_exec($curl),true);
+	curl_close($curl);
+	if( isset($response["success"]) && $response["success"] == true ){
+		file_put_contents("../../../logos/{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["image"]["url"]));
+		file_put_contents("../../../logos/m{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["thumb"]["url"]));
+		file_put_contents("../../../logos/b{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["thumb"]["url"]));
+		return "{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}"; 
 	}else{
 		return "";
 	}
@@ -137,7 +170,7 @@ function uploadImage($imageLocation){
 function uploadImageBanner($imageLocation){
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'https://api.imgur.com/3/upload',
+	  CURLOPT_URL => 'https://api.imgbb.com/1/upload?expiration=600&key=d4aba98558417ca912f2669f469950c7',
 	  CURLOPT_RETURNTRANSFER => true,
 	  CURLOPT_ENCODING => '',
 	  CURLOPT_MAXREDIRS => 10,
@@ -146,29 +179,12 @@ function uploadImageBanner($imageLocation){
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	  CURLOPT_CUSTOMREQUEST => 'POST',
 	  CURLOPT_POSTFIELDS => array('image'=> new CURLFILE($imageLocation)),
-	  CURLOPT_HTTPHEADER => array(
-		'Authorization: Client-ID 386563124e58e6c'
-	  ),
 	));
 	$response = json_decode(curl_exec($curl),true);
 	curl_close($curl);
 	if( isset($response["success"]) && $response["success"] == true ){
-		$imageSizes = [""];//,"b","m"];
-		for( $i = 0; $i < sizeof($imageSizes); $i++ ){
-			// Your file
-			$file = $response["data"]["link"];
-			$newFile = str_lreplace(".","{$imageSizes[$i]}.",$file);
-			//get File Name
-			$fileTitle = str_replace("https://i.imgur.com/","",$newFile);
-			$fileTitle = str_replace("{$imageSizes[$i]}.",".",$fileTitle);
-			// Open the file to get existing content
-			$data = file_get_contents($newFile);
-			// New file
-			$new = "../logos/{$imageSizes[$i]}".$fileTitle;
-			// Write the contents back to a new file
-			file_put_contents($new, $data);
-		}
-		return $fileTitle; 
+		file_put_contents("../logos/{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}", file_get_contents($response["data"]["image"]["url"]));
+		return "{$response["data"]["id"]}.{$response["data"]["image"]["extension"]}"; 
 	}else{
 		return "";
 	}
