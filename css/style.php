@@ -11,12 +11,42 @@ if( $account["bgType"] == 1 ){
 }else{
 	$backgroundCSS = "background-size: {$account["bgSize"]};background-repeat: {$account["bgRepeat"]};background-image: url(logos/{$account["bgImage"]});";
 }
+
+// Compute an inverted text color based on the background when possible.
+function invert_hex_color($hex){
+	$hex = trim($hex);
+	if(strlen($hex) == 0) return '#ffffff';
+	if ($hex[0] === '#') $hex = substr($hex,1);
+	if (!preg_match('/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/', $hex)) return '#ffffff';
+	if (strlen($hex) === 3) {
+		$hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
+	}
+	$r = 255 - hexdec(substr($hex,0,2));
+	$g = 255 - hexdec(substr($hex,2,2));
+	$b = 255 - hexdec(substr($hex,4,2));
+	return sprintf('#%02X%02X%02X', $r, $g, $b);
+}
+
+$baseColor = null;
+if( $account["bgType"] == 1 ){
+	// For gradient choose the first gradient color as the base for inversion
+	$baseColor = $accountColors[0];
+}elseif($account["bgType"] == 2 ){
+	$baseColor = $account["singleColor"];
+}
+
+if( !empty($baseColor) && preg_match('/^#?[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $baseColor) ){
+	$textColor = invert_hex_color($baseColor);
+}else{
+	// Fallback: for background images or unknown colors use white
+	$textColor = '#ffffff';
+}
 ?>
 <style>
 body {
 	width: 100wh;
 	height: 90vh;
-	color: #fff;
+	color: <?php echo $textColor; ?>;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
 	animation: Gradient 15s ease infinite;
