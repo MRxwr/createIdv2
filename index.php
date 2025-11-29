@@ -38,7 +38,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
                 <img class="backdrop linktree">
-                <h2 style="color: #ffffff; padding-top: 20px;"><?php echo $account["details"] ?></h2>
+                <h2 style="padding-top: 20px;"><?php echo $account["details"] ?></h2>
             </div>
     </div>
     </div>
