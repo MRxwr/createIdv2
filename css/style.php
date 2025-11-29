@@ -4,24 +4,23 @@ $accountColors = [$account["fourColors1"],$account["fourColors2"],$account["four
 for( $i = 0; $i < sizeof($accountColors); $i++ ){
 	$accountColors[$i] = ( isset($accountColors[$i]) && !empty($accountColors[$i]) ) ? $accountColors[$i] : $mainColors[$i] ;
 }
+if( $account["bgType"] == 1 ){
+	$backgroundCSS = "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});background-size: 400% 400%;";
+}elseif($account["bgType"] == 2 ){
+	$backgroundCSS = "background-color:{$account["singleColor"]};background-size: 400% 400%;";
+}else{
+	$backgroundCSS = "background-size: {$account["bgSize"]};background-repeat: {$account["bgRepeat"]};background-image: url(logos/{$account["bgImage"]});";
+}
 ?>
 <style>
 body {
 	width: 100wh;
 	height: 90vh;
 	color: #fff;
-	<?php
-	if( $account["bgType"] == 1 ){
-		echo "background: linear-gradient(-45deg,{$accountColors[0]},{$accountColors[1]},{$accountColors[2]},{$accountColors[3]});background-size: 400% 400%;";
-	}elseif($account["bgType"] == 2 ){
-		echo "background-color:{$account["singleColor"]};background-size: 400% 400%;";
-	}else{
-		echo "background-size: {$account["bgSize"]};background-repeat: {$account["bgRepeat"]};background-image: url(logos/{$account["bgImage"]});";
-	}
-	?>
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
 	animation: Gradient 15s ease infinite;
+	<?php echo $backgroundCSS; ?>
 }
 
 @-webkit-keyframes Gradient {
