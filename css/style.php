@@ -126,9 +126,9 @@ h1,h6 {
 }
 
 .backdrop {
-    -moz-box-shadow: 0px 6px 5px #5b5b5b; 
-    -webkit-box-shadow: 0px 6px 5px #5b5b5b; 
-    box-shadow: 0px 0px 10px #5b5b5b; 
+    -moz-box-shadow: 0px 6px 5px #9b9b9b; 
+    -webkit-box-shadow: 0px 6px 5px #9b9b9b; 
+    box-shadow: 0px 0px 10px #9b9b9b; 
     -moz-border-radius:20px; 
     -webkit-border-radius:20px; 
     border-radius:20px;
