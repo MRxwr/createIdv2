@@ -44,7 +44,7 @@ if( !empty($baseColor) && preg_match('/^#?[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $b
 ?>
 <style>
 body {
-	min-height: 95vh;
+	min-height: 90vh;
 	display: flex;
 	flex-direction: column;
 	color: <?php echo $textColor; ?>;
