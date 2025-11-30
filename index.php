@@ -40,7 +40,7 @@ if( isset($_GET["account"]) && !empty($_GET["account"]) ){
     <div class="col-xs-12">
             <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
                 <img class="backdrop linktree">
-                <h3 style="padding-top: 20px;"><?php echo $account["details"] ?></h3>
+                <h5 style="padding-top: 20px;"><?php echo $account["details"] ?></h5>
             </div>
     </div>
     </div>
